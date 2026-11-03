@@ -1,0 +1,12 @@
+Generation mode: built-in image_gen (lighting/weather edit)
+Input asset: src/assets/milky-way.png (newly generated, not the user's reference photo)
+Output asset: src/assets/clear-sky.png
+
+Use case: lighting-weather
+Asset type: light-theme daytime companion image for a website hero.
+Input image: edit target is the newly AI-generated Milky Way landscape, not the user's original reference photograph.
+Primary request: transform this generated night landscape into a beautiful bright morning as the weather clears after rain. Keep the same panoramic framing, 2:1 aspect ratio, low distant layered mountain-ridge silhouette and horizon position, with about 90 percent sky. Preserve the landscape geometry while changing the sky, weather, and illumination.
+Scene and lighting: an airy pale blue sky opens between soft, natural white clouds; clouds are gradually parting toward the center and right, with gentle diffused warm sunlight touching their edges. Very subtle mist floats above distant blue-grey mountain layers. Fresh, peaceful, optimistic, luminous and clean. Realistic daytime landscape photography with delicate atmospheric depth and natural cloud textures.
+Composition: the left 40 percent remains relatively simple, bright and softly textured for an existing dark-colored headline. The center and right have graceful clearing clouds and blue openings, readable also in a central mobile crop. The mountain ridge stays very low, never becomes the main subject.
+Color palette: powder blue, soft cyan, cloud white, faint warm ivory highlights, subdued blue-grey ridges. Bright and calm rather than dramatic.
+Constraints: change only lighting, time of day, sky and weather; retain the original view and landscape composition. Remove all visible stars and the Milky Way. No people, human silhouettes, buildings, foreground props, moon, planets, artificial light beams, rainbow, text, logos, watermark, borders or UI. Deliver only an opaque full-bleed background image.

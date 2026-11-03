@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import milkyWay from '../assets/milky-way.png';
+import clearSky from '../assets/clear-sky.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import Icon from '../components/Icon.astro';
@@ -11,7 +12,8 @@ const tags = getTags(posts);
 ---
 <BaseLayout home>
   <section class="hero" aria-labelledby="hero-title">
-    <Image src={milkyWay} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1200px) 1300px, 100vw" format="webp" quality={75} alt="" class="hero-image" loading="eager" fetchpriority="high" />
+    <Image src={milkyWay} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1200px) 1300px, 100vw" format="webp" quality={75} alt="" class="hero-image hero-image-night" loading="eager" fetchpriority="high" />
+    <Image src={clearSky} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1200px) 1300px, 100vw" format="webp" quality={75} alt="" class="hero-image hero-image-day" loading="eager" />
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="container hero-content">
       <p class="eyebrow hero-eyebrow"><span class="tiny-star" aria-hidden="true">✦</span> A JOURNEY OF SMALL DISCOVERIES</p>

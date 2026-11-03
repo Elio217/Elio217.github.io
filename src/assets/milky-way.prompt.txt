@@ -1,0 +1,13 @@
+Generation mode: built-in image_gen (text-to-image)
+Output asset: src/assets/milky-way.png
+No input/reference image was supplied to the generator.
+
+Use case: photorealistic-natural
+Asset type: original panoramic hero background for a Korean developer's dark-themed blog.
+Primary request: Create a brand-new, independent Milky Way night-sky landscape. The user's prior photograph communicates mood only; do not recreate it. Generate from this text without using any input image.
+Scene/backdrop: a vast star-filled deep navy night sky above a very low, distant dark mountain ridge. The sky occupies roughly 90 percent of the frame.
+Subject: a delicate but richly detailed Milky Way band rising diagonally from the lower-right horizon toward the upper-middle sky, with natural-looking interstellar dust lanes and softly luminous lavender, muted mauve and pale blue star clouds. Countless tiny sharp stars with varied brightness, realistic astrophotography texture.
+Style/medium: photorealistic long-exposure landscape astrophotography, refined and understated rather than fantasy art.
+Composition/framing: wide panoramic landscape, approximately 2:1 aspect ratio. Keep the left 40 percent of the sky especially dark and relatively quiet for an existing white headline and navigation; the richer galactic detail belongs in the center and right. Preserve a beautiful star field in the central crop for mobile screens. The mountain ridge is subtle, low and varied, never a large foreground subject.
+Lighting/mood: serene, contemplative, curious; cool deep indigo and blue-black shadows, softly luminous violet galactic haze, a faint desaturated warm horizon glow. Naturally controlled highlights and excellent dark detail.
+Constraints: deliver only the full-bleed background image; opaque background. No people or human silhouettes, no buildings, no planets or giant moon, no spacecraft, no foreground props. No text, lettering, logos, watermark, borders or UI. Avoid exaggerated neon saturation, painted swirls, repeated stars or artificial lens flares.

@@ -7,6 +7,7 @@
 - Markdown 콘텐츠 컬렉션, 태그 페이지, 제목·소개·태그 검색
 - 글별 목차, 읽기 시간, 이전·다음 글
 - 다크·라이트 테마, 반응형 레이아웃
+- 테마 버튼과 함께 전환되는 은하수 밤하늘·맑아지는 낮 하늘 배경
 - 외부 글꼴 서버에 의존하지 않는 Noto Sans KR 한글 글꼴
 - RSS, 사이트맵, robots.txt, canonical 및 소셜 공유 메타 정보
 - GitHub Actions 빌드 검증 및 GitHub Pages 자동 배포
@@ -77,12 +78,17 @@ draft: false
 | `astro.config.mjs` | 사이트 주소와 Astro 설정 |
 | `src/pages/index.astro` | 메인 문구와 섹션 |
 | `src/pages/about.astro` | 소개 글 |
-| `src/assets/milky-way.png` | 메인 은하수 이미지(제공한 이미지 사용) |
+| `src/assets/milky-way.png` | AI로 새로 생성한 메인 은하수 이미지 |
+| `src/assets/milky-way.prompt.txt` | 이미지 생성 방식과 사용한 프롬프트 |
+| `src/assets/clear-sky.png` | 밝은 테마용으로 생성한 맑아지는 하늘 이미지 |
+| `src/assets/clear-sky.prompt.txt` | 낮 하늘 이미지의 생성 방식과 프롬프트 |
 | `src/styles/global.css` | 색상, 글꼴, 레이아웃 |
 | `src/content/blog/` | Markdown 글 |
 | `.github/workflows/deploy.yml` | 빌드·배포 자동화 |
 
-배경 사진은 Astro가 반응형 WebP로 변환합니다. 공유 미리보기에는 JPEG를 사용합니다. 검색은 정적으로 생성된 글 제목·소개·태그를 브라우저에서 필터링하며 본문 전체 검색은 포함하지 않습니다. 로그인이나 별도 서버는 필요하지 않습니다.
+밤·낮 배경은 내장 이미지 생성 도구로 새로 만들었으며, 최초에 제공된 참고 사진은 현재 배경으로 사용하지 않습니다. 낮 하늘은 새로 생성한 밤하늘의 산 능선 구도를 유지하고 날씨와 조명을 바꿔 만들었습니다. 테마 버튼을 누르면 배경 사진과 글자·버튼 색상이 함께 전환되고 선택한 테마는 다음 방문에도 유지됩니다. 배경 사진은 Astro가 반응형 WebP로 변환하며, 두 배경을 미리 불러와 첫 테마 전환도 바로 시작됩니다. 움직임 줄이기 설정에서는 전환 효과를 생략합니다. 공유 미리보기에는 새 은하수의 JPEG를 사용합니다.
+
+검색은 정적으로 생성된 글 제목·소개·태그를 브라우저에서 필터링하며 본문 전체 검색은 포함하지 않습니다. 로그인이나 별도 서버는 필요하지 않습니다.
 
 ## 구조
 
