@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import { SITE } from '../site';
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-copy"><a class="footer-brand" href="/">Elio<span>.</span></a><p>작은 발견들을 모아, 더 넓은 세계로.</p></div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={17} />GitHub<Icon name="external" size={13} /></a>
+        <a href="/rss.xml"><Icon name="rss" size={16} />RSS</a>
+      </div>
+      <p>© {new Date().getFullYear()} Elio · Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a></p>
+    </div>
+  </div>
+</footer>

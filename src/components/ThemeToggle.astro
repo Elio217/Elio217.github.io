@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+---
+<button type="button" class="icon-button theme-toggle" data-theme-toggle aria-label="밝은 테마로 전환" hidden>
+  <span class="theme-sun"><Icon name="sun" size={19} /></span>
+  <span class="theme-moon"><Icon name="moon" size={19} /></span>
+</button>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  if (button) {
+    const updateLabel = () => {
+      button.setAttribute('aria-label', document.documentElement.dataset.theme === 'light' ? '어두운 테마로 전환' : '밝은 테마로 전환');
+    };
+    button.hidden = false;
+    updateLabel();
+    button.addEventListener('click', () => {
+      const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0b1018' : '#f4f5f9');
+      try { localStorage.setItem('elio-theme', theme); } catch { /* 테마는 저장 없이도 전환됩니다. */ }
+      updateLabel();
+    });
+  }
+</script>

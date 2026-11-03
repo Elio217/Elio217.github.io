@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { getPosts, getTags, tagUrl } from '../../lib/posts';
+const tags = getTags(await getPosts());
+---
+<BaseLayout title="태그" description="관심 있는 주제로 Elio의 개발 기록을 찾아보세요.">
+  <div class="container page-content">
+    <header class="page-heading"><p class="eyebrow">CONSTELLATIONS OF IDEAS</p><h1>기록을 잇는 별자리<span class="accent">.</span></h1><p>관심 있는 주제를 따라 새로운 기록을 발견해 보세요.</p></header>
+    <div class="tags-grid">{tags.map(({ name, count }, index) => <a class="topic-card" href={tagUrl(name)}><span class="topic-index">{String(index + 1).padStart(2, '0')} <span aria-hidden="true">✦</span></span><h2>{name}</h2><span class="topic-card-bottom">{count}개의 기록<Icon name="external" size={21} /></span></a>)}</div>
+    {!tags.length && <p class="empty-state">아직 등록된 태그가 없습니다.</p>}
+  </div>
+</BaseLayout>

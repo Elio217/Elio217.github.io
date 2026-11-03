@@ -1,0 +1,51 @@
+---
+import PostCard from './PostCard.astro';
+import Icon from './Icon.astro';
+import type { Post } from '../lib/posts';
+interface Props { posts: Post[]; searchable?: boolean }
+const { posts, searchable = true } = Astro.props;
+---
+<section data-post-list aria-label="글 목록">
+  {searchable && <div class="search-bar" data-search-control hidden>
+    <label for="search" class="sr-only">제목, 소개, 태그로 글 검색</label>
+    <Icon name="search" size={20} />
+    <input type="search" id="search" name="q" placeholder="제목, 소개, 태그로 검색해 보세요" autocomplete="off" />
+    <span class="search-hint" aria-hidden="true">SEARCH</span>
+  </div>}
+  <div class="list-summary"><span data-result-count role="status" aria-live="polite">전체 {posts.length}개의 기록</span><span>최신순 <span aria-hidden="true">↓</span></span></div>
+  <div class="post-list">
+    {posts.map((post) => <div data-post-item data-search={[post.data.title, post.data.description, ...post.data.tags].join(' ').normalize('NFKC').toLocaleLowerCase('ko-KR')}><PostCard post={post} compact /></div>)}
+  </div>
+  {posts.length === 0 && <div class="empty-state"><Icon name="star" size={32} /><h3>첫 번째 기록을 기다리고 있어요.</h3><p>새로운 이야기가 곧 이곳에 쌓입니다.</p></div>}
+  <div class="empty-state" data-no-results hidden><Icon name="search" size={30} /><h3>일치하는 기록이 없어요.</h3><p>다른 검색어로 다시 찾아보세요.</p><button type="button" class="text-link" data-clear-search>검색 초기화 <Icon name="arrow" size={17} /></button></div>
+</section>
+<script>
+  const list = document.querySelector<HTMLElement>('[data-post-list]');
+  const input = list?.querySelector<HTMLInputElement>('input[type="search"]');
+  if (list && input) {
+    const control = list.querySelector<HTMLElement>('[data-search-control]');
+    const items = [...list.querySelectorAll<HTMLElement>('[data-post-item]')];
+    const count = list.querySelector<HTMLElement>('[data-result-count]');
+    const empty = list.querySelector<HTMLElement>('[data-no-results]');
+    if (control) control.hidden = false;
+    const filter = () => {
+      const query = input.value.normalize('NFKC').toLocaleLowerCase('ko-KR').trim();
+      const terms = query.split(/\s+/).filter(Boolean);
+      let visible = 0;
+      for (const item of items) {
+        const matches = terms.every((term) => (item.dataset.search ?? '').includes(term));
+        item.hidden = !matches;
+        if (matches) visible++;
+      }
+      if (count) count.textContent = query ? `검색 결과 ${visible}개` : `전체 ${items.length}개의 기록`;
+      if (empty) empty.hidden = !query || visible > 0;
+    };
+    input.addEventListener('input', filter);
+    list.querySelector('[data-clear-search]')?.addEventListener('click', () => { input.value = ''; filter(); input.focus(); });
+    if (location.hash === '#search') input.focus();
+    document.querySelector('.search-link')?.addEventListener('click', () => input.focus());
+    // 브라우저의 뒤로 가기에서 복구된 검색어에도 목록을 맞춥니다.
+    window.addEventListener('pageshow', filter);
+    filter();
+  }
+</script>

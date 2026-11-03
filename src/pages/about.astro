@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+---
+<BaseLayout title="소개" description="배움을 기록하고, 작은 발견을 쌓아가는 Elio의 개발 공간을 소개합니다.">
+  <div class="container page-content narrow-container">
+    <header class="page-heading"><p class="eyebrow">BEHIND THE JOURNAL</p><h1>안녕하세요, Elio입니다<span class="accent">.</span></h1><p>작은 발견들을 모아, 더 넓은 세계로.</p></header>
+    <section class="about-intro"><div class="about-avatar" aria-hidden="true">e<span>✦</span></div><div><p class="eyebrow">A CURIOUS MIND, A GROWING UNIVERSE</p><h2>배움에는 끝이 없으니까.</h2><p>개발하면서 마주한 질문과 그 답을 찾아가는 과정을 기록합니다. 직접 써본 코드, 해결한 문제, 다시 꺼내 보고 싶은 생각들을 이곳에 차곡차곡 남깁니다.</p></div></section>
+    <div class="prose about-prose"><h2>이곳에 남기는 것들</h2><p>처음 만난 개념을 이해하기까지의 과정, 작은 프로젝트를 만들며 배운 점, 한참 고민한 뒤에야 풀린 문제를 적습니다. 완성된 결과만큼이나 그 과정에서의 발견을 소중히 여깁니다.</p><h2>기록이 연결되는 순간</h2><p>어제의 메모가 오늘의 문제를 푸는 실마리가 되기도 합니다. 이곳의 기록이 미래의 저에게, 그리고 비슷한 고민을 하는 누군가에게 작은 도움이 되기를 바랍니다.</p></div>
+    <a class="about-github" href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={28} /><div><span>MORE THINGS I'M BUILDING</span><strong>github.com/Elio217</strong></div><Icon name="external" size={24} /></a>
+  </div>
+</BaseLayout>
