@@ -1,0 +1,25 @@
+<svg class="signature-logo" viewBox="0 0 142 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <g class="signature-strokes" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path class="signature-stroke signature-writing" pathLength="1" stroke-width="1.7" d="M12 43C27 49 52 23 37 17C25 12 14 26 20 34C23 39 32 37 36 32C27 28 13 35 12 47C11 63 33 66 48 45C58 30 67 9 62 7C55 3 47 28 49 46C50 59 59 56 68 44C72 35 75 32 73 40L69 51C68 56 75 57 83 44C89 26 110 28 108 42C107 57 86 61 83 49C80 41 88 35 98 38C105 43 119 37 124 31" />
+    <path class="signature-stroke signature-dot" pathLength="1" stroke-width="2.5" d="M77 26L77.6 25.5" />
+    <path class="signature-stroke signature-underline" pathLength="1" stroke-width="1.1" d="M22 70C48 63 91 69 128 57" />
+  </g>
+</svg>
+<style>
+  .signature-logo { display: block; width: 136px; height: 60px; color: var(--text); flex-shrink: 0; }
+  .signature-strokes { animation: signature-visibility 7s linear infinite; }
+  .signature-stroke { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .signature-writing { animation: signature-write 7s ease-in-out infinite; }
+  .signature-dot { animation: signature-dot 7s linear infinite; }
+  .signature-underline { animation: signature-underline 7s ease-out infinite; }
+  @keyframes signature-write { 0%, 7% { stroke-dashoffset: 1; } 58%, 100% { stroke-dashoffset: 0; } }
+  @keyframes signature-dot { 0%, 60% { stroke-dashoffset: 1; } 64%, 100% { stroke-dashoffset: 0; } }
+  @keyframes signature-underline { 0%, 64% { stroke-dashoffset: 1; } 76%, 100% { stroke-dashoffset: 0; } }
+  @keyframes signature-visibility { 0%, 88% { opacity: 1; } 98%, 100% { opacity: 0; } }
+  @media (max-width: 720px) { .signature-logo { width: 118px; height: 52px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .signature-strokes, .signature-stroke { animation: none; }
+    .signature-strokes { opacity: 1; }
+    .signature-stroke { stroke-dashoffset: 0; }
+  }
+</style>

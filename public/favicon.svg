@@ -1,5 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="17" fill="#111722"/>
-  <path d="M17 31c0-9 5-15 13-15 9 0 13 6 13 15v4H25c1 5 4 7 9 7 3 0 6-1 8-2v8c-3 1-6 2-10 2-10 0-15-7-15-19Zm9-3h9c0-4-1-6-4-6-2 0-4 2-5 6Z" fill="#faf9f6"/>
-  <path d="m49 35 2.5 7 7 2.5-7 2.5-2.5 7-2.5-7-7-2.5 7-2.5Z" fill="#c2b1f5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <path id="marten" d="M12 25C6 20 7 10 13 9C19 8 23 13 25 17C31 15 36 15 41 17C44 11 49 9 53 13C57 17 54 24 51 27C56 34 55 43 50 48L52 52C42 61 22 61 11 52L14 48C7 42 7 32 12 25Z"/>
+    <clipPath id="face"><use href="#marten"/></clipPath>
+  </defs>
+  <use href="#marten" fill="#8d796c"/>
+  <g clip-path="url(#face)">
+    <path d="M7 39C17 44 24 36 32 41C40 36 48 39 57 35V61H7V39Z" fill="#fff6e7"/>
+    <path d="M17 55C26 57 37 59 47 53L46 62H19L17 55Z" fill="#edbf5b"/>
+  </g>
+  <use href="#marten" stroke="#382e2d" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M13 15C13 19 15 21 17 22M49 17C48 20 47 22 46 23" stroke="#c7b4a2" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="22" cy="33" rx="2.1" ry="1.9" fill="#302728"/>
+  <ellipse cx="43" cy="30" rx="2.1" ry="1.9" fill="#302728"/>
+  <path d="M28 40C30 37 35 36 39 39C39 43 36 45 33 45C30 45 28 43 28 40Z" fill="#382e2d"/>
+  <path d="M33 45V48L28 51M33 48L38 50" stroke="#382e2d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M53 2L56 8L62 11L56 14L53 21L50 14L43 11L50 8L53 2Z" fill="#c2b1f5" stroke="#684797" stroke-width="1.7" stroke-linejoin="round"/>
 </svg>

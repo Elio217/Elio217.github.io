@@ -12,6 +12,7 @@ export const SITE = {
 
 interface Profile {
   name: string;
+  realName: string;
   handle: string;
   bio: string;
   avatar: string | ImageMetadata;
@@ -23,6 +24,7 @@ interface Profile {
 // 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다.
 export const PROFILE: Profile = {
   name: SITE.name,
+  realName: '김도현',
   handle: '@Elio217',
   bio: '개발과 보안을 공부하며\n배운 것을 기록합니다.',
   avatar: profileMarten,

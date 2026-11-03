@@ -93,7 +93,11 @@ draft: false
 | `src/content/blog/` | Markdown 글 |
 | `.github/workflows/deploy.yml` | 빌드·배포 자동화 |
 
-홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. 현재 `src/assets/profile-marten.png`의 담비 캐릭터를 사용하며, Astro가 작은 WebP 이미지로 최적화해 홈과 소개에 표시합니다. 사진을 바꾸려면 `src/assets/`의 파일을 import해 `avatar`에 지정하거나, `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
+홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. `realName`에 이름을 넣으면 `Elio` 옆에 작은 글씨로 표시하며, 빈 문자열이면 생략합니다. 현재 `src/assets/profile-marten.png`의 담비 캐릭터를 사용하며, Astro가 작은 WebP 이미지로 최적화해 홈과 소개에 표시합니다. 사진을 바꾸려면 `src/assets/`의 파일을 import해 `avatar`에 지정하거나, `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
+
+상단 홈 링크는 `src/components/SignatureLogo.astro`의 SVG 필기체 로고입니다. 글씨를 쓰고 잠시 보여준 뒤 다시 쓰는 7초 주기를 반복합니다. 운영체제에서 움직임 줄이기를 선택하면 완성된 서명을 정적으로 표시합니다.
+
+브라우저 탭 아이콘은 `public/favicon.svg`의 담비 얼굴과 별 모양입니다. 16px·32px PNG도 함께 제공하며, 아이콘을 수정하면 SVG에서 두 PNG를 다시 생성해 함께 반영하세요. 프로필의 작은 이름은 현재 `김도현`으로 설정되어 있습니다.
 
 프로젝트 카드와 상세 내용은 `src/data/portfolio.ts`의 `PROJECTS`에서 관리합니다. 현재 블로그는 운영 중인 프로젝트이며, Web Security Lab은 준비 중인 항목입니다. 실제 프로젝트에 맞게 제목·설명·기술·저장소 주소를 수정하세요. `/projects/`와 각 프로젝트 상세 페이지가 함께 생성됩니다.
 

@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import SignatureLogo from './SignatureLogo.astro';
 const { overlay = false } = Astro.props;
 const pathname = Astro.url.pathname;
 const links = [{ href: '/', label: '홈' }, { href: '/projects/', label: '프로젝트' }, { href: '/blog/', label: '글 목록' }, { href: '/about/', label: '소개' }];
@@ -8,7 +9,7 @@ const links = [{ href: '/', label: '홈' }, { href: '/projects/', label: '프로
 <header class:list={['site-header', { 'header-overlay': overlay }]}>
   <div class="container header-inner">
     <a class="wordmark" href="/" aria-label="Elio 블로그 홈">
-      <Icon name="star" size={27} /><span>Elio<span class="wordmark-dot">.</span></span>
+      <SignatureLogo />
     </a>
     <nav aria-label="메인 메뉴">
       {links.map(({ href, label }) => {
