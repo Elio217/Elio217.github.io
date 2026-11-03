@@ -12,7 +12,7 @@ interface Profile {
   handle: string;
   bio: string;
   avatar: string;
-  links: { label: string; href: string; icon: 'github' | 'arrow' | 'external' }[];
+  links: { label: string; href: string; icon: 'github' | 'arrow' | 'external' | 'rss' | 'mail' | 'user' | 'file' }[];
 }
 
 // 사진은 public/images/에 넣고 avatar를 '/images/profile.jpg'처럼 지정하세요.
@@ -20,10 +20,13 @@ interface Profile {
 export const PROFILE: Profile = {
   name: SITE.name,
   handle: '@Elio217',
-  bio: '배운 것을 기록하고,\n작은 발견을 쌓아갑니다.',
+  bio: '개발과 보안을 공부하며\n배운 것을 기록합니다.',
   avatar: '',
   links: [
     { label: 'GitHub', href: SITE.github, icon: 'github' },
-    { label: '소개', href: '/about/', icon: 'arrow' },
+    { label: 'RSS', href: '/rss.xml', icon: 'rss' },
+    { label: '소개', href: '/about/', icon: 'user' },
   ],
 };
+
+export const POST_CATEGORIES = ['개발', '웹 보안', '문제 해결', '회고'] as const;

@@ -1,44 +1,31 @@
 ---
-import { Image } from 'astro:assets';
-import milkyWay from '../assets/milky-way.png';
-import clearSky from '../assets/clear-sky.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PostCard from '../components/PostCard.astro';
 import ProfileCard from '../components/ProfileCard.astro';
+import PortfolioArt from '../components/PortfolioArt.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import HomePostList from '../components/HomePostList.astro';
 import Icon from '../components/Icon.astro';
-import { getPosts, getTags, tagUrl } from '../lib/posts';
-import { SITE } from '../site';
+import { getPosts } from '../lib/posts';
+import { PROJECTS } from '../data/portfolio';
+import '../styles/home.css';
 const posts = await getPosts();
-const tags = getTags(posts);
 ---
 <BaseLayout home>
-  <section class="hero" aria-labelledby="hero-title">
-    <Image src={milkyWay} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1200px) 1300px, 100vw" format="webp" quality={75} alt="" class="hero-image hero-image-night" loading="eager" fetchpriority="high" />
-    <Image src={clearSky} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1200px) 1300px, 100vw" format="webp" quality={75} alt="" class="hero-image hero-image-day" loading="eager" />
-    <div class="hero-shade" aria-hidden="true"></div>
-    <div class="container hero-content">
-      <ProfileCard />
-      <div class="hero-copy">
-        <p class="eyebrow hero-eyebrow"><span class="tiny-star" aria-hidden="true">✦</span> A JOURNEY OF SMALL DISCOVERIES</p>
-        <h1 id="hero-title">오늘의 배움이<br />내일의 <span>별이 되도록.</span></h1>
-        <p class="hero-description">코드를 쓰고, 문제를 풀고, 작은 발견을 기록합니다.<br class="desktop-break" />호기심을 따라 조금씩 넓혀가는 Elio의 개발 우주.</p>
-        <div class="hero-actions"><a class="button button-primary" href="/blog/">기록 둘러보기 <Icon name="arrow" size={18} /></a><a class="hero-github" href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={19} />GitHub <Icon name="external" size={15} /></a></div>
-      </div>
+  <div class="container home-layout">
+    <ProfileCard />
+    <div class="home-main">
+      <section class="home-intro" aria-labelledby="home-title">
+        <div><p class="home-eyebrow">SECURITY · DEVELOPMENT · FIELD NOTES</p><h1 id="home-title">배운 것을 기록하고,<br />만든 것을 <span>나눕니다.</span></h1><p class="home-intro-description">개발과 웹 보안에 관한 프로젝트, 실험, 문제 해결의 기록.</p></div>
+        <div class="home-journal"><PortfolioArt kind="journal" /></div>
+      </section>
+      <section class="home-projects" aria-labelledby="featured-title">
+        <div class="home-section-heading"><h2 id="featured-title"><Icon name="star" size={22} />대표 프로젝트</h2><a href="/projects/" class="text-link">전체 프로젝트 <Icon name="arrow" size={17} /></a></div>
+        <div class="featured-projects">{PROJECTS.slice(0, 2).map((project) => <ProjectCard project={project} />)}</div>
+      </section>
+      <section class="home-recent" aria-labelledby="recent-title">
+        <div class="home-section-heading"><h2 id="recent-title"><Icon name="star" size={22} />최근 글</h2><a href="/blog/" class="text-link">모든 글 <Icon name="arrow" size={17} /></a></div>
+        <HomePostList posts={posts} />
+      </section>
     </div>
-    <div class="container hero-bottom"><span><span class="status-dot" aria-hidden="true"></span> ALWAYS LEARNING, ALWAYS EXPLORING</span><a href="#latest">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
-  </section>
-
-  <div class="container home-content">
-    <section id="latest" class="latest-section" aria-labelledby="latest-title">
-      <div class="section-heading"><div><p class="eyebrow">THE LATEST ENTRIES</p><h2 id="latest-title">최근의 기록<span class="heading-count">{posts.length}</span></h2></div><a href="/blog/" class="text-link">모든 글 보기 <Icon name="arrow" size={17} /></a></div>
-      {posts.length ? <div class="post-grid">{posts.slice(0, 3).map((post, index) => <PostCard post={post} index={index} />)}</div> : <div class="empty-state"><Icon name="star" size={32} /><p>첫 번째 기록을 준비하고 있어요.</p></div>}
-    </section>
-
-    <section class="topic-strip" aria-labelledby="topic-title">
-      <div><p class="eyebrow">EXPLORE BY TOPIC</p><h2 id="topic-title">관심 있는 주제부터</h2></div>
-      <div class="topic-links">{tags.slice(0, 6).map(({ name, count }) => <a href={tagUrl(name)}>{name}<span>{count}</span></a>)}<a href="/tags/" class="all-topics" aria-label="모든 태그 보기"><Icon name="arrow" size={19} /></a></div>
-    </section>
-
-    <aside class="home-note"><span class="note-star" aria-hidden="true">✧</span><div><p>완벽한 답보다, 어제보다 나아진 질문 하나.</p><span>이곳은 배움의 과정을 쌓아가는 작은 공간입니다.</span></div><a href="/about/" class="text-link">이 블로그에 대해 <Icon name="external" size={17} /></a></aside>
   </div>
 </BaseLayout>

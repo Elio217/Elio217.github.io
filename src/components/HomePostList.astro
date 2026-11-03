@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+import { formatDate, postUrl, type Post } from '../lib/posts';
+import { POST_CATEGORIES } from '../site';
+interface Props { posts: Post[] }
+const recent = Astro.props.posts.slice(0, 6);
+---
+<div class="home-posts" data-home-posts>
+  <div class="home-post-controls" data-home-controls hidden>
+    <div class="category-filters" role="group" aria-label="글 카테고리">
+      <button type="button" class="category-filter" data-category="" aria-pressed="true">전체</button>
+      {POST_CATEGORIES.map((category) => <button type="button" class="category-filter" data-category={category} aria-pressed="false">{category}</button>)}
+    </div>
+    <div class="home-search"><Icon name="search" size={17} /><label for="home-search" class="sr-only">최근 글 검색</label><input type="search" id="home-search" placeholder="글 검색" autocomplete="off" /></div>
+  </div>
+  <p class="sr-only" data-home-count role="status" aria-live="polite">최근 {recent.length}개의 글</p>
+  <div class="home-post-list">
+    {recent.map((post) => <article class="home-post-row" data-home-post data-category={post.data.category} data-search={[post.data.title, post.data.description, post.data.category, ...post.data.tags].join(' ').normalize('NFKC').toLocaleLowerCase('ko-KR')}>
+      <h3><a href={postUrl(post)}>{post.data.title}</a></h3>
+      <p class="home-post-description">{post.data.description}</p>
+      <span class="home-post-category">{post.data.category}</span>
+      <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate).replaceAll(' ', '')}</time>
+    </article>)}
+  </div>
+  {!recent.length && <p class="home-no-posts">첫 번째 기록을 기다리고 있습니다.</p>}
+  <div class="home-no-results" data-home-empty hidden><Icon name="search" size={25} /><p>조건에 맞는 글이 아직 없어요.</p><button type="button" class="text-link" data-home-reset>전체 글 다시 보기 <Icon name="arrow" size={15} /></button></div>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-home-posts]');
+  if (root) {
+    const controls = root.querySelector<HTMLElement>('[data-home-controls]');
+    const input = root.querySelector<HTMLInputElement>('input[type="search"]');
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('button[data-category]')];
+    const rows = [...root.querySelectorAll<HTMLElement>('[data-home-post]')];
+    const empty = root.querySelector<HTMLElement>('[data-home-empty]');
+    const count = root.querySelector<HTMLElement>('[data-home-count]');
+    let selected = '';
+    if (controls) controls.hidden = false;
+    const filter = () => {
+      const terms = (input?.value ?? '').normalize('NFKC').toLocaleLowerCase('ko-KR').trim().split(/\s+/).filter(Boolean);
+      let visible = 0;
+      for (const row of rows) {
+        const matches = (!selected || row.dataset.category === selected) && terms.every((term) => (row.dataset.search ?? '').includes(term));
+        row.hidden = !matches;
+        if (matches) visible++;
+      }
+      for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.category === selected));
+      if (empty) empty.hidden = visible > 0 || rows.length === 0;
+      if (count) count.textContent = `최근 글 중 ${visible}개 표시`;
+    };
+    buttons.forEach((button) => button.addEventListener('click', () => { selected = button.dataset.category ?? ''; filter(); }));
+    input?.addEventListener('input', filter);
+    root.querySelector('[data-home-reset]')?.addEventListener('click', () => { selected = ''; if (input) input.value = ''; filter(); });
+    window.addEventListener('pageshow', filter);
+    filter();
+  }
+</script>

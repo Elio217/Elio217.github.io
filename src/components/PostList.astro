@@ -14,7 +14,7 @@ const { posts, searchable = true } = Astro.props;
   </div>}
   <div class="list-summary"><span data-result-count role="status" aria-live="polite">전체 {posts.length}개의 기록</span><span>최신순 <span aria-hidden="true">↓</span></span></div>
   <div class="post-list">
-    {posts.map((post) => <div data-post-item data-search={[post.data.title, post.data.description, ...post.data.tags].join(' ').normalize('NFKC').toLocaleLowerCase('ko-KR')}><PostCard post={post} compact /></div>)}
+    {posts.map((post) => <div data-post-item data-search={[post.data.title, post.data.description, post.data.category, ...post.data.tags].join(' ').normalize('NFKC').toLocaleLowerCase('ko-KR')}><PostCard post={post} compact /></div>)}
   </div>
   {posts.length === 0 && <div class="empty-state"><Icon name="star" size={32} /><h3>첫 번째 기록을 기다리고 있어요.</h3><p>새로운 이야기가 곧 이곳에 쌓입니다.</p></div>}
   <div class="empty-state" data-no-results hidden><Icon name="search" size={30} /><h3>일치하는 기록이 없어요.</h3><p>다른 검색어로 다시 찾아보세요.</p><button type="button" class="text-link" data-clear-search>검색 초기화 <Icon name="arrow" size={17} /></button></div>

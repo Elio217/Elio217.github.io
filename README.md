@@ -6,6 +6,8 @@
 - Astro 7 + TypeScript, 정적 사이트 생성
 - Markdown 콘텐츠 컬렉션, 태그 페이지, 제목·소개·태그 검색
 - 글별 목차, 읽기 시간, 이전·다음 글
+- 왼쪽 프로필, 대표 프로젝트, 카테고리 필터·검색을 갖춘 홈 화면
+- 프로젝트 목록·상세 페이지, 소속·외부활동을 소개하는 이력 페이지
 - 다크·라이트 테마, 반응형 레이아웃
 - 테마 버튼과 함께 전환되는 은하수 밤하늘·맑아지는 낮 하늘 배경
 - 외부 글꼴 서버에 의존하지 않는 Noto Sans KR 한글 글꼴
@@ -40,6 +42,7 @@ title: '나의 첫 번째 기록'
 description: '글에 대한 짧은 소개입니다.'
 pubDate: '2026-11-03'
 tags: ['개발', '기록']
+category: '개발'
 draft: false
 ---
 
@@ -52,6 +55,7 @@ draft: false
 
 - 파일 이름이 글 주소가 됩니다. `my-post.md` → `/blog/my-post/`
 - `title`, `description`, `pubDate`는 필수이며 `tags`, `draft`, `updatedDate`는 선택입니다.
+- `category`는 `개발`, `웹 보안`, `문제 해결`, `회고` 중 하나이며 생략하면 `개발`입니다. 홈 화면에서는 최근 6개 글을 카테고리와 검색어로 함께 필터링합니다.
 - `draft: true`인 글은 개발·배포 모두에서 제외됩니다.
 - `##`, `###` 제목은 글 목차에 자동으로 표시됩니다.
 - 이미지는 `public/images/`에 넣고 `/images/파일명`으로 참조할 수 있습니다.
@@ -78,6 +82,7 @@ draft: false
 | `astro.config.mjs` | 사이트 주소와 Astro 설정 |
 | `src/pages/index.astro` | 메인 문구와 섹션 |
 | `src/pages/about.astro` | 소개 글 |
+| `src/data/portfolio.ts` | `PROJECTS`의 프로젝트 정보와 `CAREER`의 소속·외부활동 |
 | `src/assets/milky-way.png` | AI로 새로 생성한 메인 은하수 이미지 |
 | `src/assets/milky-way.prompt.txt` | 이미지 생성 방식과 사용한 프롬프트 |
 | `src/assets/clear-sky.png` | 밝은 테마용으로 생성한 맑아지는 하늘 이미지 |
@@ -87,6 +92,10 @@ draft: false
 | `.github/workflows/deploy.yml` | 빌드·배포 자동화 |
 
 홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. 프로필 사진을 사용하려면 `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
+
+프로젝트 카드와 상세 내용은 `src/data/portfolio.ts`의 `PROJECTS`에서 관리합니다. 현재 블로그는 운영 중인 프로젝트이며, Web Security Lab은 준비 중인 항목입니다. 실제 프로젝트에 맞게 제목·설명·기술·저장소 주소를 수정하세요. `/projects/`와 각 프로젝트 상세 페이지가 함께 생성됩니다.
+
+소개 탭은 `CAREER`의 소속과 외부활동을 표시합니다. 초기 내용은 고려대학교(세종) 인공지능사이버보안학과와 화이트햇스쿨 4기입니다. `period`(기간)와 `description`(설명)은 선택이며, 입력한 경우에만 표시됩니다. 이메일이나 이력서 링크를 추가하려면 `PROFILE.links`에 실제 주소를 등록하세요. 아이콘은 `mail`, `file` 등을 사용할 수 있습니다.
 
 밤·낮 배경은 내장 이미지 생성 도구로 새로 만들었으며, 최초에 제공된 참고 사진은 현재 배경으로 사용하지 않습니다. 낮 하늘은 새로 생성한 밤하늘의 산 능선 구도를 유지하고 날씨와 조명을 바꿔 만들었습니다. 테마 버튼을 누르면 배경 사진과 글자·버튼 색상이 함께 전환되고 선택한 테마는 다음 방문에도 유지됩니다. 배경 사진은 Astro가 반응형 WebP로 변환하며, 두 배경을 미리 불러와 첫 테마 전환도 바로 시작됩니다. 움직임 줄이기 설정에서는 전환 효과를 생략합니다. 공유 미리보기에는 새 은하수의 JPEG를 사용합니다.
 
@@ -100,6 +109,7 @@ src/
 ├── components/       # 공통 UI
 ├── content/blog/     # Markdown 글
 ├── content.config.ts # 글 정보 스키마
+├── data/             # 프로젝트 및 이력 정보
 ├── layouts/          # 공통 HTML 및 메타 정보
 ├── lib/              # 글·태그·날짜 처리
 ├── pages/            # 홈, 목록, 상세, 태그, 소개, RSS 등

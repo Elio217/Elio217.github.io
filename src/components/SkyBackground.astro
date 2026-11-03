@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import milkyWay from '../assets/milky-way.png';
+import clearSky from '../assets/clear-sky.png';
+---
+<div class="sky-background" aria-hidden="true">
+  <Image src={milkyWay} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1000px) 1600px, 100vw" format="webp" quality={75} alt="" class="sky-image sky-night" loading="eager" fetchpriority="high" />
+  <Image src={clearSky} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1000px) 1600px, 100vw" format="webp" quality={75} alt="" class="sky-image sky-day" loading="eager" />
+  <div class="sky-shade"></div>
+</div>
+<style>
+  :global(body.sky-page) { position: relative; isolation: isolate; --glass: #101522b8; --glass-soft: #10152278; --art-fill: #2e244a; --art-highlight: #c2b1f5; }
+  :global([data-theme='light'] body.sky-page) { --glass: #ffffffb5; --glass-soft: #ffffff70; --art-fill: #eee7f6; --art-highlight: #7151ad; }
+  :global(.sky-page .container) { width: min(1280px, calc(100% - 96px)); }
+  .sky-background { position: fixed; inset: 0; z-index: -2; pointer-events: none; background: var(--bg); }
+  .sky-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: opacity .65s ease; }
+  .sky-night { opacity: 1; }
+  .sky-day { opacity: 0; }
+  .sky-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #080d16c9, #0b10185e), linear-gradient(0deg, #0b1018c9, #0b101818 75%); }
+  :global([data-theme='light']) .sky-night { opacity: 0; }
+  :global([data-theme='light']) .sky-day { opacity: 1; }
+  :global([data-theme='light']) .sky-shade { background: linear-gradient(90deg, #f4f5f9b3, #f4f5f938), linear-gradient(0deg, #f4f5f9bf, #f4f5f933 80%); }
+  @media (max-width: 1000px) { :global(.sky-page .container) { width: calc(100% - 64px); } }
+  @media (max-width: 720px) {
+    :global(.sky-page .container) { width: calc(100% - 40px); }
+    .sky-image { object-position: 62% center; }
+  }
+</style>

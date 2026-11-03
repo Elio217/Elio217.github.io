@@ -1,52 +1,46 @@
 ---
 import Icon from './Icon.astro';
 import { PROFILE } from '../site';
-
 const initial = [...PROFILE.name.trim()][0]?.toUpperCase() ?? 'E';
 ---
 <aside class="profile-card" aria-labelledby="profile-name">
-  <div class="profile-avatar">
-    {PROFILE.avatar ? (
-      <img src={PROFILE.avatar} alt={`${PROFILE.name}의 프로필 사진`} width="80" height="80" decoding="async" />
-    ) : (
-      <span class="profile-initial" aria-hidden="true">{initial}</span>
-    )}
-    <span class="profile-star"><Icon name="star" size={15} /></span>
-  </div>
-  <div class="profile-identity">
-    <h2 id="profile-name">{PROFILE.name}</h2>
-    {PROFILE.handle && <p class="profile-handle">{PROFILE.handle}</p>}
-  </div>
-  {PROFILE.bio && <p class="profile-bio">{PROFILE.bio}</p>}
-  {PROFILE.links.length > 0 && <nav class="profile-links" aria-label="프로필 링크">
-    {PROFILE.links.map(({ label, href, icon }) => {
+  <div class="profile-content">
+    <div class="profile-avatar">
+      {PROFILE.avatar ? <img src={PROFILE.avatar} alt={`${PROFILE.name}의 프로필 사진`} width="92" height="92" decoding="async" /> : <span class="profile-initial" aria-hidden="true">{initial}</span>}
+      <span class="profile-star"><Icon name="star" size={25} /></span>
+    </div>
+    <div class="profile-identity"><h2 id="profile-name">{PROFILE.name}</h2>{PROFILE.handle && <p class="profile-handle">{PROFILE.handle}</p>}</div>
+    {PROFILE.bio && <p class="profile-bio">{PROFILE.bio}</p>}
+    {PROFILE.links.length > 0 && <nav class="profile-links" aria-label="프로필 링크">{PROFILE.links.map(({ label, href, icon }) => {
       const external = /^https?:\/\//.test(href);
-      return <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}><Icon name={icon} size={16} /><span>{label}</span>{external && <Icon name="external" size={12} />}</a>;
-    })}
-  </nav>}
+      return <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}><Icon name={icon} size={18} /><span>{label}</span>{external && <Icon name="external" size={12} />}</a>;
+    })}</nav>}
+  </div>
 </aside>
-
 <style>
-  .profile-card { min-width: 0; padding: 30px 24px 25px; border: 1px solid #c2b1f52b; border-radius: 16px; background: #0b1018c9; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 16px 48px #0000001f; color: var(--text); text-align: center; }
-  .profile-avatar { position: relative; width: 80px; height: 80px; margin: 0 auto 18px; border: 1px solid #c2b1f54d; border-radius: 50%; background: radial-gradient(ellipse at 80% 20%, #6b498b88, #24304580 70%); }
+  .profile-card { min-width: 0; border-right: 1px solid var(--line-strong); padding: 16px 28px 20px 0; }
+  .profile-content { position: sticky; top: 30px; }
+  .profile-avatar { position: relative; width: 92px; height: 92px; margin: 0 0 20px 10px; border: 1px solid #c2b1f54d; border-radius: 50%; background: radial-gradient(ellipse at 75% 20%, #74539399, #243045b3 75%); }
   .profile-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-  .profile-initial { display: grid; place-items: center; width: 100%; height: 100%; color: #ebe1ff; font-size: 32px; font-weight: 500; }
-  .profile-star { position: absolute; right: -5px; bottom: 0; display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface); color: var(--accent); }
-  .profile-identity h2 { font-size: 26px; font-weight: 600; letter-spacing: -.6px; overflow-wrap: anywhere; }
-  .profile-handle { margin-top: 4px; color: var(--subtle); font-size: 11px; overflow-wrap: anywhere; }
-  .profile-bio { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.95; white-space: pre-line; }
-  .profile-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line-strong); }
-  .profile-links a { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: 11px; transition: color .2s, border-color .2s, background .2s; }
-  .profile-links a:hover { color: var(--accent); border-color: var(--line-strong); background: var(--accent-bg); }
-  :global([data-theme='light']) .profile-card { border-color: #ffffffbf; background: #ffffffc9; box-shadow: 0 16px 48px #2d46691a; }
-  :global([data-theme='light']) .profile-avatar { border-color: #7151ad33; background: linear-gradient(135deg, #eee6ff, #dae9f5); }
-  :global([data-theme='light']) .profile-initial { color: var(--accent); }
+  .profile-initial { display: grid; place-items: center; width: 100%; height: 100%; color: #ebe1ff; font-size: 35px; font-weight: 600; }
+  .profile-star { position: absolute; right: -5px; bottom: -2px; color: var(--accent); }
+  .profile-identity h2 { font-size: 26px; font-weight: 600; letter-spacing: -.7px; overflow-wrap: anywhere; }
+  .profile-handle { margin-top: 2px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+  .profile-bio { margin-top: 18px; color: var(--text); font-size: 13px; line-height: 1.9; white-space: pre-line; }
+  .profile-links { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; padding-top: 24px; border-top: 1px solid var(--line-strong); }
+  .profile-links a { display: inline-flex; align-items: center; gap: 12px; min-height: 28px; font-size: 13px; color: var(--muted); width: fit-content; }
+  .profile-links a:hover { color: var(--accent); }
+  :global([data-theme='light']) .profile-avatar { background: linear-gradient(135deg, #eee6ff, #e2e9f6); border-color: #7151ad33; }
+  :global([data-theme='light']) .profile-initial { color: #574371; }
+  @media (max-width: 900px) { .profile-card { padding-right: 20px; } .profile-bio { font-size: 12px; } }
   @media (max-width: 720px) {
-    .profile-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 16px; padding: 22px; text-align: left; }
+    .profile-card { padding: 0 0 24px; border-right: 0; border-bottom: 1px solid var(--line-strong); }
+    .profile-content { position: static; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px 18px; align-items: center; }
     .profile-avatar { width: 64px; height: 64px; margin: 0; }
     .profile-initial { font-size: 27px; }
     .profile-identity h2 { font-size: 23px; }
     .profile-bio { grid-column: 1 / -1; margin: 0; }
-    .profile-links { grid-column: 1 / -1; justify-content: flex-start; margin: 0; padding-top: 15px; }
+    .profile-links { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; gap: 12px 24px; margin: 0; padding-top: 6px; border: 0; }
+    .profile-links a { font-size: 12px; gap: 8px; }
   }
 </style>

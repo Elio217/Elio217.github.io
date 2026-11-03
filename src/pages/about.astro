@@ -1,13 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CareerTimeline from '../components/CareerTimeline.astro';
 import Icon from '../components/Icon.astro';
-import { SITE } from '../site';
+import { PROFILE, SITE } from '../site';
 ---
-<BaseLayout title="소개" description="배움을 기록하고, 작은 발견을 쌓아가는 Elio의 개발 공간을 소개합니다.">
-  <div class="container page-content narrow-container">
-    <header class="page-heading"><p class="eyebrow">BEHIND THE JOURNAL</p><h1>안녕하세요, Elio입니다<span class="accent">.</span></h1><p>작은 발견들을 모아, 더 넓은 세계로.</p></header>
-    <section class="about-intro"><div class="about-avatar" aria-hidden="true">e<span>✦</span></div><div><p class="eyebrow">A CURIOUS MIND, A GROWING UNIVERSE</p><h2>배움에는 끝이 없으니까.</h2><p>개발하면서 마주한 질문과 그 답을 찾아가는 과정을 기록합니다. 직접 써본 코드, 해결한 문제, 다시 꺼내 보고 싶은 생각들을 이곳에 차곡차곡 남깁니다.</p></div></section>
-    <div class="prose about-prose"><h2>이곳에 남기는 것들</h2><p>처음 만난 개념을 이해하기까지의 과정, 작은 프로젝트를 만들며 배운 점, 한참 고민한 뒤에야 풀린 문제를 적습니다. 완성된 결과만큼이나 그 과정에서의 발견을 소중히 여깁니다.</p><h2>기록이 연결되는 순간</h2><p>어제의 메모가 오늘의 문제를 푸는 실마리가 되기도 합니다. 이곳의 기록이 미래의 저에게, 그리고 비슷한 고민을 하는 누군가에게 작은 도움이 되기를 바랍니다.</p></div>
-    <a class="about-github" href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={28} /><div><span>MORE THINGS I'M BUILDING</span><strong>github.com/Elio217</strong></div><Icon name="external" size={24} /></a>
+<BaseLayout title="소개" description="Elio의 소개, 소속과 외부활동을 정리한 이력입니다." sky>
+  <div class="container page-content career-page">
+    <header class="page-heading"><p class="eyebrow">ABOUT & EXPERIENCE</p><h1>안녕하세요, {PROFILE.name}입니다<span class="accent">.</span></h1><p>배우고, 만들고, 기록하며 조금씩 성장합니다.</p></header>
+    <section class="career-intro" aria-labelledby="career-intro-title"><div class="career-avatar">{PROFILE.avatar ? <img src={PROFILE.avatar} alt={`${PROFILE.name}의 프로필 사진`} width="96" height="96" /> : <span aria-hidden="true">{[...PROFILE.name][0]?.toUpperCase()}</span>}</div><div><p class="eyebrow">{PROFILE.handle}</p><h2 id="career-intro-title">개발과 사이버보안을 배우는 사람.</h2><p>배운 것을 직접 만들어 보고, 그 과정에서 만난 질문과 경험을 기록합니다. 이곳에서는 제가 속한 곳과 함께한 활동을 소개합니다.</p><a href={SITE.github} class="text-link" target="_blank" rel="noopener noreferrer"><Icon name="github" size={16} />GitHub에서 만나기 <Icon name="external" size={14} /></a></div></section>
+    <section class="career-section" aria-labelledby="career-title"><div class="career-section-heading"><Icon name="star" size={23} /><div><p class="eyebrow">EDUCATION & ACTIVITIES</p><h2 id="career-title">소속과 외부활동</h2></div></div><CareerTimeline /></section>
   </div>
 </BaseLayout>
+<style>
+  .career-page { max-width: 900px; }
+  .career-intro { display: flex; gap: 28px; align-items: center; padding: 28px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--glass); backdrop-filter: blur(14px); }
+  .career-avatar { flex-shrink: 0; width: 96px; height: 96px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--accent-bg); color: var(--accent); font-size: 38px; }
+  .career-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+  .career-intro h2 { font-size: 22px; margin-top: 9px; letter-spacing: -.8px; }
+  .career-intro div > p:not(.eyebrow) { margin-top: 13px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+  .career-intro .text-link { margin-top: 12px; color: var(--accent); }
+  .career-section { margin-top: 45px; padding: 30px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--glass); backdrop-filter: blur(14px); }
+  .career-section-heading { display: flex; align-items: center; gap: 13px; }
+  .career-section-heading > svg { color: var(--accent); }
+  .career-section h2 { font-size: 23px; font-weight: 600; margin-top: 5px; letter-spacing: -.7px; }
+  @media (max-width: 600px) { .career-intro { flex-direction: column; align-items: flex-start; padding: 24px; } .career-intro h2 { font-size: 20px; } .career-section { padding: 25px 22px; } }
+</style>

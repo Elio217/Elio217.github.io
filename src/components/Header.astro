@@ -3,7 +3,7 @@ import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
 const { overlay = false } = Astro.props;
 const pathname = Astro.url.pathname;
-const links = [{ href: '/', label: '홈' }, { href: '/blog/', label: '글 목록' }, { href: '/tags/', label: '태그' }, { href: '/about/', label: '소개' }];
+const links = [{ href: '/', label: '홈' }, { href: '/projects/', label: '프로젝트' }, { href: '/blog/', label: '글 목록' }, { href: '/about/', label: '소개' }];
 ---
 <header class:list={['site-header', { 'header-overlay': overlay }]}>
   <div class="container header-inner">
