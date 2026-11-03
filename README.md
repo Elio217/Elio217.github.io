@@ -10,6 +10,7 @@
 - 프로젝트 목록·상세 페이지, 소속·외부활동을 소개하는 이력 페이지
 - 다크·라이트 테마, 반응형 레이아웃
 - 테마 버튼과 함께 전환되는 은하수 밤하늘·맑아지는 낮 하늘 배경
+- 첫 방문의 기본값은 밝은 테마이며, 이후 직접 선택한 테마를 기억합니다.
 - 외부 글꼴 서버에 의존하지 않는 Noto Sans KR 한글 글꼴
 - RSS, 사이트맵, robots.txt, canonical 및 소셜 공유 메타 정보
 - GitHub Actions 빌드 검증 및 GitHub Pages 자동 배포
@@ -87,11 +88,12 @@ draft: false
 | `src/assets/milky-way.prompt.txt` | 이미지 생성 방식과 사용한 프롬프트 |
 | `src/assets/clear-sky.png` | 밝은 테마용으로 생성한 맑아지는 하늘 이미지 |
 | `src/assets/clear-sky.prompt.txt` | 낮 하늘 이미지의 생성 방식과 프롬프트 |
+| `src/assets/profile-marten.png` | 홈과 소개 페이지에 사용하는 담비 프로필 원본 |
 | `src/styles/global.css` | 색상, 글꼴, 레이아웃 |
 | `src/content/blog/` | Markdown 글 |
 | `.github/workflows/deploy.yml` | 빌드·배포 자동화 |
 
-홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. 프로필 사진을 사용하려면 `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
+홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. 현재 `src/assets/profile-marten.png`의 담비 캐릭터를 사용하며, Astro가 작은 WebP 이미지로 최적화해 홈과 소개에 표시합니다. 사진을 바꾸려면 `src/assets/`의 파일을 import해 `avatar`에 지정하거나, `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
 
 프로젝트 카드와 상세 내용은 `src/data/portfolio.ts`의 `PROJECTS`에서 관리합니다. 현재 블로그는 운영 중인 프로젝트이며, Web Security Lab은 준비 중인 항목입니다. 실제 프로젝트에 맞게 제목·설명·기술·저장소 주소를 수정하세요. `/projects/`와 각 프로젝트 상세 페이지가 함께 생성됩니다.
 

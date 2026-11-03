@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import { PROFILE } from '../site';
+interface Props { size: number; sizes?: string }
+const { size, sizes = `${size}px` } = Astro.props;
+const avatar = PROFILE.avatar;
+const alt = `${PROFILE.name}의 프로필 이미지`;
+---
+{typeof avatar === 'string' ? (
+  <img src={avatar} alt={alt} width={size} height={size} decoding="async" />
+) : (
+  <Image src={avatar} alt={alt} width={size} height={size} widths={[size, size * 2, size * 3]} sizes={sizes} format="webp" quality={85} loading="eager" />
+)}

@@ -1,3 +1,6 @@
+import type { ImageMetadata } from 'astro';
+import profileMarten from './assets/profile-marten.png';
+
 export const SITE = {
   title: 'Elio · 개발 기록',
   name: 'Elio',
@@ -11,17 +14,18 @@ interface Profile {
   name: string;
   handle: string;
   bio: string;
-  avatar: string;
+  avatar: string | ImageMetadata;
   links: { label: string; href: string; icon: 'github' | 'arrow' | 'external' | 'rss' | 'mail' | 'user' | 'file' }[];
 }
 
-// 사진은 public/images/에 넣고 avatar를 '/images/profile.jpg'처럼 지정하세요.
+// src/assets/ 이미지를 import하면 Astro가 웹용으로 최적화합니다.
+// public/images/의 사진 경로('/images/profile.jpg')도 사용할 수 있습니다.
 // 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다.
 export const PROFILE: Profile = {
   name: SITE.name,
   handle: '@Elio217',
   bio: '개발과 보안을 공부하며\n배운 것을 기록합니다.',
-  avatar: '',
+  avatar: profileMarten,
   links: [
     { label: 'GitHub', href: SITE.github, icon: 'github' },
     { label: 'RSS', href: '/rss.xml', icon: 'rss' },
