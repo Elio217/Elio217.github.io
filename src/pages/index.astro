@@ -4,6 +4,7 @@ import milkyWay from '../assets/milky-way.png';
 import clearSky from '../assets/clear-sky.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
+import ProfileCard from '../components/ProfileCard.astro';
 import Icon from '../components/Icon.astro';
 import { getPosts, getTags, tagUrl } from '../lib/posts';
 import { SITE } from '../site';
@@ -16,10 +17,13 @@ const tags = getTags(posts);
     <Image src={clearSky} widths={[640, 1024, 1600, 2400]} sizes="(max-width: 1200px) 1300px, 100vw" format="webp" quality={75} alt="" class="hero-image hero-image-day" loading="eager" />
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="container hero-content">
-      <p class="eyebrow hero-eyebrow"><span class="tiny-star" aria-hidden="true">✦</span> A JOURNEY OF SMALL DISCOVERIES</p>
-      <h1 id="hero-title">오늘의 배움이<br />내일의 <span>별이 되도록.</span></h1>
-      <p class="hero-description">코드를 쓰고, 문제를 풀고, 작은 발견을 기록합니다.<br class="desktop-break" />호기심을 따라 조금씩 넓혀가는 Elio의 개발 우주.</p>
-      <div class="hero-actions"><a class="button button-primary" href="/blog/">기록 둘러보기 <Icon name="arrow" size={18} /></a><a class="hero-github" href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={19} />GitHub <Icon name="external" size={15} /></a></div>
+      <ProfileCard />
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow"><span class="tiny-star" aria-hidden="true">✦</span> A JOURNEY OF SMALL DISCOVERIES</p>
+        <h1 id="hero-title">오늘의 배움이<br />내일의 <span>별이 되도록.</span></h1>
+        <p class="hero-description">코드를 쓰고, 문제를 풀고, 작은 발견을 기록합니다.<br class="desktop-break" />호기심을 따라 조금씩 넓혀가는 Elio의 개발 우주.</p>
+        <div class="hero-actions"><a class="button button-primary" href="/blog/">기록 둘러보기 <Icon name="arrow" size={18} /></a><a class="hero-github" href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={19} />GitHub <Icon name="external" size={15} /></a></div>
+      </div>
     </div>
     <div class="container hero-bottom"><span><span class="status-dot" aria-hidden="true"></span> ALWAYS LEARNING, ALWAYS EXPLORING</span><a href="#latest">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
   </section>

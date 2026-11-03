@@ -82,7 +82,8 @@ main:focus { outline: none; }
 :root[data-theme='light'] .hero-image-night { opacity: 0; }
 :root[data-theme='light'] .hero-image-day { opacity: 1; }
 .hero-shade { position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg, #080d17bc 0%, #090c1650 55%, #0b101820 100%), linear-gradient(0deg, var(--bg) 0%, #0b101846 14%, #0b101805 45%, #080e173f 100%); }
-.hero-content { padding-top: 108px; padding-bottom: 105px; }
+.hero-content { display: grid; grid-template-columns: 264px minmax(0, 1fr); align-items: center; gap: 64px; padding-top: 118px; padding-bottom: 105px; }
+.hero-copy { min-width: 0; }
 .hero-eyebrow { display: flex; gap: 10px; align-items: center; color: #d6c8ed; font-size: 10px; letter-spacing: 2.3px; }
 .tiny-star { color: #d5baff; font-size: 17px; }
 .hero h1 { margin-top: 22px; font-size: clamp(36px, 4.5vw, 58px); letter-spacing: -2.6px; font-weight: 600; line-height: 1.48; text-shadow: 0 2px 24px #070c1840; }
@@ -291,6 +292,7 @@ html[data-theme='dark'] .astro-code, html[data-theme='dark'] .astro-code span { 
   .header-inner { gap: 25px; }
   .hero { min-height: 620px; }
   .hero h1 { font-size: 47px; }
+  .hero-content { grid-template-columns: 230px minmax(0, 1fr); gap: 36px; }
   .post-grid { gap: 14px; }
   .post-card { padding: 21px; }
   .compact { padding: 26px 0; }
@@ -317,7 +319,7 @@ html[data-theme='dark'] .astro-code, html[data-theme='dark'] .astro-code span { 
   .hero { min-height: 670px; }
   .hero-image { object-position: 57% center; }
   .hero-shade { background: linear-gradient(90deg, #080d178c, #0b10182e), linear-gradient(0deg, var(--bg) 0%, #0b10182d 25%, #0b10183b 100%); }
-  .hero-content { padding-top: 85px; padding-bottom: 120px; }
+  .hero-content { grid-template-columns: minmax(0, 1fr); gap: 34px; padding-top: 104px; padding-bottom: 110px; }
   .hero-eyebrow { font-size: 8px; letter-spacing: 1.6px; }
   .hero h1 { font-size: 40px; letter-spacing: -1.9px; line-height: 1.55; margin-top: 21px; }
   .hero-description { font-size: 13px; margin-top: 23px; line-height: 1.9; }

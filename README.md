@@ -74,7 +74,7 @@ draft: false
 
 | 파일 | 변경 내용 |
 | --- | --- |
-| `src/site.ts` | 블로그 이름, 설명, GitHub 링크 |
+| `src/site.ts` | 블로그 기본 정보와 홈 화면의 `PROFILE` 설정(이름, 사진, 소개, 링크) |
 | `astro.config.mjs` | 사이트 주소와 Astro 설정 |
 | `src/pages/index.astro` | 메인 문구와 섹션 |
 | `src/pages/about.astro` | 소개 글 |
@@ -85,6 +85,8 @@ draft: false
 | `src/styles/global.css` | 색상, 글꼴, 레이아웃 |
 | `src/content/blog/` | Markdown 글 |
 | `.github/workflows/deploy.yml` | 빌드·배포 자동화 |
+
+홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. 프로필 사진을 사용하려면 `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
 
 밤·낮 배경은 내장 이미지 생성 도구로 새로 만들었으며, 최초에 제공된 참고 사진은 현재 배경으로 사용하지 않습니다. 낮 하늘은 새로 생성한 밤하늘의 산 능선 구도를 유지하고 날씨와 조명을 바꿔 만들었습니다. 테마 버튼을 누르면 배경 사진과 글자·버튼 색상이 함께 전환되고 선택한 테마는 다음 방문에도 유지됩니다. 배경 사진은 Astro가 반응형 WebP로 변환하며, 두 배경을 미리 불러와 첫 테마 전환도 바로 시작됩니다. 움직임 줄이기 설정에서는 전환 효과를 생략합니다. 공유 미리보기에는 새 은하수의 JPEG를 사용합니다.
 
