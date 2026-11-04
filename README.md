@@ -62,6 +62,26 @@ draft: false
 - 이미지는 `public/images/`에 넣고 `/images/파일명`으로 참조할 수 있습니다.
 - 현재는 블로그 제작 과정을 정리한 `building-my-astro-blog.md` 한 편을 게시했습니다. 새 글은 이 폴더에 추가하세요.
 
+## Pages CMS로 글과 사진 관리하기
+
+저장소 루트의 `.pages.yml`에 이 블로그용 편집 화면을 설정했습니다. 글은 `src/content/blog/`, 사진은 `public/images/`에 저장합니다. 제목·글 소개·게시일·카테고리·태그·초안 여부를 입력하고, 본문 편집기에서 사진을 업로드해 삽입할 수 있습니다.
+
+처음 연결할 때는 다음 순서로 진행합니다.
+
+1. `.pages.yml`, `public/images/.gitkeep`, 이 README를 `main`에 커밋·푸시합니다.
+2. [Pages CMS](https://app.pagescms.org/)에 GitHub 계정으로 로그인합니다.
+3. 안내에 따라 Pages CMS GitHub App을 설치하고 `Elio217.github.io` 저장소를 선택합니다.
+4. Pages CMS에서 `Elio217/Elio217.github.io` 저장소와 `main` 브랜치를 엽니다. 이미 올린 `.pages.yml`을 사용합니다.
+5. **글 관리**에서 기존 글을 수정하거나 새 글을 작성합니다. 공개할 때는 **초안으로 저장**을 끄고 저장합니다.
+
+새 글은 기본적으로 초안입니다. 초안도 GitHub에는 저장되지만, 블로그 목록과 상세 페이지에는 나타나지 않습니다. 공개한 글은 기존 GitHub Actions 배포가 완료되면 반영됩니다.
+
+파일명은 날짜와 시간으로 자동 생성되며, 새 글을 만들 때 원하는 영문 파일명으로 수정할 수도 있습니다. 확장자는 `.md`를 사용합니다. 사진은 고유한 이름으로 저장하고 본문에는 `/images/파일명` 경로를 넣으므로 직접 경로를 맞출 필요가 없습니다. **Editor / Source** 전환으로 본문을 편집하거나 Markdown 원문을 확인할 수 있습니다.
+
+Pages CMS에서 글을 저장하면 GitHub에 변경이 생깁니다. 이후 PC에서 다시 작업할 때는 로컬 변경을 먼저 정리한 뒤 원격 변경을 가져옵니다.
+
+공식 문서: [연결 순서](https://pagescms.org/docs/quick-start/), [사진 저장 경로 설정](https://pagescms.org/docs/configuration/media/).
+
 ## GitHub Pages에 배포하기
 
 이 저장소는 사용자 사이트이므로 `base` 없이 `https://elio217.github.io`를 사용합니다. 빌드된 `dist/` 폴더를 직접 커밋할 필요는 없습니다.
@@ -93,6 +113,8 @@ draft: false
 | `src/assets/profile-marten.png` | 홈과 소개 페이지에 사용하는 담비 프로필 원본 |
 | `src/styles/global.css` | 색상, 글꼴, 레이아웃 |
 | `src/content/blog/` | Markdown 글 |
+| `.pages.yml` | Pages CMS의 글 편집 항목과 사진 저장 경로 |
+| `public/images/` | Pages CMS에서 업로드한 본문 사진 |
 | `.github/workflows/deploy.yml` | 빌드·배포 자동화 |
 
 홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. `realName`에 이름을 넣으면 `Elio` 옆에 작은 글씨로 표시하며, 빈 문자열이면 생략합니다. 현재 `src/assets/profile-marten.png`의 담비 캐릭터를 사용하며, Astro가 작은 WebP 이미지로 최적화해 홈과 소개에 표시합니다. 사진을 바꾸려면 `src/assets/`의 파일을 import해 `avatar`에 지정하거나, `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 시 구절 위에 표시됩니다.

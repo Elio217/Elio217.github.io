@@ -1,0 +1,73 @@
+# Pages CMS: https://app.pagescms.org/
+media:
+  - name: images
+    label: 사진
+    input: public/images
+    output: /images
+    rename: random
+    extensions: [png, jpg, jpeg, webp, gif, avif, svg]
+
+content:
+  - name: posts
+    label: 글 관리
+    type: collection
+    path: src/content/blog
+    format: yaml-frontmatter
+    filename:
+      template: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+      field: create
+    view:
+      primary: title
+      fields: [title, category, pubDate, draft]
+      sort: [pubDate, title]
+      search: [title, description, category, tags]
+      default:
+        sort: pubDate
+        order: desc
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: description
+        label: 글 소개
+        type: text
+        required: true
+        description: 글 목록에 표시할 짧은 소개를 적어주세요.
+      - name: pubDate
+        label: 게시일
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: 카테고리
+        type: select
+        required: true
+        default: 개발
+        options:
+          values:
+            - 개발
+            - CTF/Wargame
+            - BugbBounty
+            - 블로그/기술문서
+            - 논문/컨퍼런스
+            - 공모전/자격증
+      - name: tags
+        label: 태그
+        type: string
+        list: true
+        default: []
+        description: 글의 주제나 사용한 기술을 하나씩 추가하세요.
+      - name: draft
+        label: 초안으로 저장
+        type: boolean
+        default: true
+        description: 켜두면 블로그에 표시되지 않습니다. 공개하려면 끄고 저장하세요.
+      - name: body
+        label: 본문
+        type: rich-text
+        options:
+          format: markdown
+          media: images
+          switcher: true
