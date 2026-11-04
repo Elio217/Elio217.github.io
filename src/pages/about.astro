@@ -7,8 +7,8 @@ import { PROFILE, SITE } from '../site';
 ---
 <BaseLayout title="소개" description="Elio의 소개, 소속과 외부활동을 정리한 이력입니다." sky>
   <div class="container page-content career-page">
-    <header class="page-heading"><p class="eyebrow">ABOUT & EXPERIENCE</p><h1>안녕하세요, {PROFILE.name}입니다<span class="accent">.</span></h1><p>배우고, 만들고, 기록하며 조금씩 성장합니다.</p></header>
-    <section class="career-intro" aria-labelledby="career-intro-title"><div class="career-avatar">{PROFILE.avatar ? <ProfileImage size={96} /> : <span aria-hidden="true">{[...PROFILE.name][0]?.toUpperCase()}</span>}</div><div><p class="eyebrow">{PROFILE.handle}</p><h2 id="career-intro-title">개발과 사이버보안을 배우는 사람.</h2><p>배운 것을 직접 만들어 보고, 그 과정에서 만난 질문과 경험을 기록합니다. 이곳에서는 제가 속한 곳과 함께한 활동을 소개합니다.</p><a href={SITE.github} class="text-link" target="_blank" rel="noopener noreferrer"><Icon name="github" size={16} />GitHub에서 만나기 <Icon name="external" size={14} /></a></div></section>
+    <header class="page-heading"><p class="eyebrow">ABOUT & EXPERIENCE</p>
+    <section class="career-intro" aria-labelledby="career-intro-title"><div class="career-avatar">{PROFILE.avatar ? <ProfileImage size={96} /> : <span aria-hidden="true">{[...PROFILE.name][0]?.toUpperCase()}</span>}</div><div><p class="eyebrow">{PROFILE.handle}</p><h2 id="career-intro-title">김도</h2><p>보안 초보자</p><a href={SITE.github} class="text-link" target="_blank" rel="noopener noreferrer"><Icon name="github" size={16} />GitHub에서 만나기 <Icon name="external" size={14} /></a></div></section>
     <section class="career-section" aria-labelledby="career-title"><div class="career-section-heading"><Icon name="star" size={23} /><div><p class="eyebrow">EDUCATION & ACTIVITIES</p><h2 id="career-title">소속과 외부활동</h2></div></div><CareerTimeline /></section>
   </div>
 </BaseLayout>
