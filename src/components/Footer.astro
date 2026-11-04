@@ -6,11 +6,15 @@ const { compact = false } = Astro.props;
 ---
 <footer class:list={['site-footer', { 'footer-compact': compact }]}>
   <div class="container footer-inner">
-    <div class="footer-copy">{compact ? <p>© {new Date().getFullYear()} Elio.</p> : <><a class="footer-brand" href="/">Elio<span>.</span></a><p>작은 발견들을 모아, 더 넓은 세계로.</p></>}</div>
+    <div class="footer-copy">
+      {compact ? <p>© {new Date().getFullYear()} Elio.</p> : <>
+        <a class="footer-brand" href="/">Elio<span>.</span></a>
+        <p>참회록(懺悔錄)</p>
+      </>}
+    </div>
     <div class="footer-right">
       <div class="footer-links">
         <a href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={17} />GitHub<Icon name="external" size={13} /></a>
-        {!compact && <a href="/rss.xml"><Icon name="rss" size={16} />RSS</a>}
       </div>
       {!compact && <p>© {new Date().getFullYear()} Elio · Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a></p>}
     </div>

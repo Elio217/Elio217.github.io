@@ -4,6 +4,12 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { PROJECTS } from '../../data/portfolio';
 ---
 <BaseLayout title="프로젝트" description="직접 만들고, 실험하고, 배운 것을 연결하는 Elio의 프로젝트를 소개합니다." sky>
-  <div class="container page-content"><header class="page-heading"><p class="eyebrow">THINGS I'M BUILDING</p><h1>만들며 배우는 것들<span class="accent">.</span></h1><p>아이디어를 코드로 옮기고, 그 과정에서의 발견을 남깁니다.</p></header><div class="projects-grid">{PROJECTS.map((project) => <ProjectCard project={project} />)}</div></div>
+  <div class="container page-content">
+    <header class="page-heading">
+      <h1>PROJECTS</h1>
+      <p>별하나의 추억</p>
+    </header>
+    <div class="projects-grid">{PROJECTS.map((project) => <ProjectCard project={project} />)}</div>
+  </div>
 </BaseLayout>
 <style>.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; } @media (max-width: 1000px) { .projects-grid { grid-template-columns: 1fr; } }</style>

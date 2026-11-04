@@ -45,7 +45,7 @@ export interface CareerEntry {
 
 // 기간과 활동 설명은 확인된 내용이 있을 때 선택적으로 추가하세요.
 export const CAREER: CareerEntry[] = [
-  { category: '소속', organization: '고려대학교(세종)', detail: '인공지능사이버보안학과' },
+  { category: '소속', organization: 'KUality', detail: 'Korec' },
   { category: '외부활동', organization: '화이트햇스쿨', detail: '4기' },
 ];
 

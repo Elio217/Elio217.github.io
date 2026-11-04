@@ -7,10 +7,22 @@ const tags = getTags(posts);
 ---
 <BaseLayout title="모든 기록" description="코드와 함께 쌓아가는 배움, 생각, 작은 발견. Elio의 모든 개발 기록을 만나보세요.">
   <div class="container page-content">
-    <header class="page-heading"><p class="eyebrow">THE JOURNAL</p><h1>배움의 궤적<span class="accent">.</span></h1><p>하나씩 이해하고, 나만의 언어로 남긴 기록들입니다.</p></header>
+    <header class="page-heading">
+      <h1>POSTS</h1>
+      <p>하늘과 바람과 별과 시</p>
+    </header>
     <div class="archive-layout">
       <PostList posts={posts} />
-      <aside class="archive-sidebar" aria-labelledby="sidebar-topics"><p class="eyebrow">BROWSE BY TOPIC</p><h2 id="sidebar-topics">주제별로 읽기</h2><a class="sidebar-all" href="/blog/" aria-current="page">전체 기록 <span>{posts.length}</span></a>{tags.map(({ name, count }) => <a href={tagUrl(name)}>{name}<span>{count}</span></a>)}<p class="sidebar-note">작은 기록도 쌓이면<br />나만의 지도가 됩니다. <span aria-hidden="true">✦</span></p></aside>
+      <aside class="archive-sidebar" aria-labelledby="sidebar-topics">
+        <p class="eyebrow">BROWSE BY TOPIC</p>
+        <h2 id="sidebar-topics">주제별로 읽기</h2>
+        <a class="sidebar-all" href="/blog/" aria-current="page">전체 기록 <span>{posts.length}</span></a>
+        {tags.map(({ name, count }) => <a href={tagUrl(name)}>{name}<span>{count}</span></a>)}
+        <p class="sidebar-note">
+          등불을 밝혀 어둠을 조금 내몰고,<br />
+          시대처럼 올 아침을 기다리는 최후의 나 <span aria-hidden="true">✦</span>
+        </p>
+      </aside>
     </div>
   </div>
 </BaseLayout>

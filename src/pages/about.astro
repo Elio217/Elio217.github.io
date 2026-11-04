@@ -7,9 +7,29 @@ import { PROFILE, SITE } from '../site';
 ---
 <BaseLayout title="소개" description="Elio의 소개, 소속과 외부활동을 정리한 이력입니다." sky>
   <div class="container page-content career-page">
-    <header class="page-heading"><p class="eyebrow">ABOUT & EXPERIENCE</p>
-    <section class="career-intro" aria-labelledby="career-intro-title"><div class="career-avatar">{PROFILE.avatar ? <ProfileImage size={96} /> : <span aria-hidden="true">{[...PROFILE.name][0]?.toUpperCase()}</span>}</div><div><p class="eyebrow">{PROFILE.handle}</p><h2 id="career-intro-title">김도</h2><p>보안 초보자</p><a href={SITE.github} class="text-link" target="_blank" rel="noopener noreferrer"><Icon name="github" size={16} />GitHub에서 만나기 <Icon name="external" size={14} /></a></div></section>
-    <section class="career-section" aria-labelledby="career-title"><div class="career-section-heading"><Icon name="star" size={23} /><div><p class="eyebrow">EDUCATION & ACTIVITIES</p><h2 id="career-title">소속과 외부활동</h2></div></div><CareerTimeline /></section>
+    <section class="career-intro" aria-labelledby="career-intro-title">
+      <div class="career-avatar">
+        {PROFILE.avatar ? <ProfileImage size={96} /> : <span aria-hidden="true">{[...PROFILE.name][0]?.toUpperCase()}</span>}
+      </div>
+      <div>
+        <p class="eyebrow">{PROFILE.handle}</p>
+        <h1 id="career-intro-title">{PROFILE.realName}</h1>
+        <p>보안 초보자, 클라우드 보안을 배우고 있습니다.</p>
+        <a href={SITE.github} class="text-link" target="_blank" rel="noopener noreferrer">
+          <Icon name="github" size={16} />GitHub에서 만나기 <Icon name="external" size={14} />
+        </a>
+      </div>
+    </section>
+    <section class="career-section" aria-labelledby="career-title">
+      <div class="career-section-heading">
+        <Icon name="star" size={23} />
+        <div>
+          <p class="eyebrow">EDUCATION & ACTIVITIES</p>
+          <h2 id="career-title">소속과 외부활동</h2>
+        </div>
+      </div>
+      <CareerTimeline />
+    </section>
   </div>
 </BaseLayout>
 <style>
@@ -17,12 +37,12 @@ import { PROFILE, SITE } from '../site';
   .career-intro { display: flex; gap: 28px; align-items: center; padding: 28px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--glass); backdrop-filter: blur(14px); }
   .career-avatar { flex-shrink: 0; width: 96px; height: 96px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--accent-bg); color: var(--accent); font-size: 38px; }
   .career-avatar :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-  .career-intro h2 { font-size: 22px; margin-top: 9px; letter-spacing: -.8px; }
+  .career-intro h1 { font-size: 22px; margin-top: 9px; letter-spacing: -.8px; font-weight: 600; }
   .career-intro div > p:not(.eyebrow) { margin-top: 13px; color: var(--muted); font-size: 13px; line-height: 1.9; }
   .career-intro .text-link { margin-top: 12px; color: var(--accent); }
   .career-section { margin-top: 45px; padding: 30px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--glass); backdrop-filter: blur(14px); }
   .career-section-heading { display: flex; align-items: center; gap: 13px; }
   .career-section-heading > svg { color: var(--accent); }
   .career-section h2 { font-size: 23px; font-weight: 600; margin-top: 5px; letter-spacing: -.7px; }
-  @media (max-width: 600px) { .career-intro { flex-direction: column; align-items: flex-start; padding: 24px; } .career-intro h2 { font-size: 20px; } .career-section { padding: 25px 22px; } }
+  @media (max-width: 600px) { .career-intro { flex-direction: column; align-items: flex-start; padding: 24px; } .career-intro h1 { font-size: 20px; } .career-section { padding: 25px 22px; } }
 </style>

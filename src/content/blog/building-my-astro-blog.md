@@ -70,7 +70,7 @@ draft: false
 ```typescript
 details: [
   { label: '소속', value: 'KUS_AICS' },
-  { label: '동아리', value: 'KUality · korec' },
+  { label: '동아리', value: 'KUality · Korec' },
   { label: '외부활동', value: '화이트햇스쿨 4기' },
 ],
 ```
