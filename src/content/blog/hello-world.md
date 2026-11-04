@@ -3,7 +3,7 @@ title: 'Astro와 함께, 첫 번째 기록'
 description: '작은 발견을 차곡차곡 쌓아갈 공간을 열었습니다. 이 블로그에 담고 싶은 이야기와 앞으로의 기록에 대해.'
 pubDate: '2026-11-03T09:00:00+09:00'
 tags: ['Astro', '기록']
-category: '회고'
+category: '블로그/기술문서'
 draft: false
 ---
 

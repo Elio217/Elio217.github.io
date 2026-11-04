@@ -3,6 +3,7 @@ title: 'Markdown으로 글을 쓰는 방법'
 description: '새 글을 만들고 제목, 날짜, 태그를 지정하는 방법부터 코드 블록까지. 블로그를 위한 작은 작성 가이드.'
 pubDate: '2026-11-03T08:00:00+09:00'
 tags: ['Markdown', '블로그']
+category: '블로그/기술문서'
 draft: false
 ---
 

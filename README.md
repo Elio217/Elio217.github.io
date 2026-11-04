@@ -56,7 +56,7 @@ draft: false
 
 - 파일 이름이 글 주소가 됩니다. `my-post.md` → `/blog/my-post/`
 - `title`, `description`, `pubDate`는 필수이며 `tags`, `draft`, `updatedDate`는 선택입니다.
-- `category`는 `개발`, `웹 보안`, `문제 해결`, `회고` 중 하나이며 생략하면 `개발`입니다. 홈 화면에서는 최근 6개 글을 카테고리와 검색어로 함께 필터링합니다.
+- `category`는 `개발`, `CTF/Wargame`, `BugbBounty`, `블로그/기술문서`, `논문/컨퍼런스`, `공모전/자격증` 중 하나이며 생략하면 `개발`입니다. 홈 화면에서는 최근 6개 글을 카테고리와 검색어로 함께 필터링합니다.
 - `draft: true`인 글은 개발·배포 모두에서 제외됩니다.
 - `##`, `###` 제목은 글 목차에 자동으로 표시됩니다.
 - 이미지는 `public/images/`에 넣고 `/images/파일명`으로 참조할 수 있습니다.
@@ -95,9 +95,19 @@ draft: false
 
 홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. `realName`에 이름을 넣으면 `Elio` 옆에 작은 글씨로 표시하며, 빈 문자열이면 생략합니다. 현재 `src/assets/profile-marten.png`의 담비 캐릭터를 사용하며, Astro가 작은 WebP 이미지로 최적화해 홈과 소개에 표시합니다. 사진을 바꾸려면 `src/assets/`의 파일을 import해 `avatar`에 지정하거나, `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
 
+소속·동아리·외부활동은 `PROFILE.details`에서 수정합니다. `label`은 항목명, `value`는 내용이며, 화면에서 두 열로 자동 정렬합니다. `value`에 `\n`을 넣으면 같은 내용 열 안에서 줄바꿈됩니다. `bio`는 자유로운 소개 문구가 필요할 때 함께 사용할 수 있고, 빈 문자열이면 표시하지 않습니다.
+
+```ts
+details: [
+  { label: '소속', value: 'KUS_AICS' },
+  { label: '동아리', value: 'KUality · korec' },
+  { label: '외부활동', value: '화이트햇스쿨 4기' },
+],
+```
+
 상단 홈 링크는 `src/components/SignatureLogo.astro`의 SVG 필기체 로고입니다. 글씨를 쓰고 잠시 보여준 뒤 다시 쓰는 7초 주기를 반복합니다. 운영체제에서 움직임 줄이기를 선택하면 완성된 서명을 정적으로 표시합니다.
 
-브라우저 탭 아이콘은 `public/favicon.svg`의 검은 원 안 흰색 담비 실루엣입니다. 16px·32px PNG도 함께 제공하며, 아이콘을 수정하면 SVG에서 두 PNG를 다시 생성해 함께 반영하세요. 프로필의 작은 이름은 현재 `김도현`으로 설정되어 있습니다.
+브라우저 탭 아이콘은 `public/favicon.svg`를 원본으로 만든 검은 원 안 흰색 담비 실루엣입니다. 페이지는 새 파일명인 `favicon-marten-silhouette.svg` 및 16px·32px PNG를 참조하며, 브라우저 기본 경로용 `favicon.ico`도 제공합니다. 아이콘을 수정하면 이 파일들을 함께 갱신하세요. 프로필의 작은 이름은 현재 `김도현`으로 설정되어 있습니다. 홈의 프로필과 하단에서는 RSS 링크를 표시하지 않습니다.
 
 프로젝트 카드와 상세 내용은 `src/data/portfolio.ts`의 `PROJECTS`에서 관리합니다. 현재 블로그는 운영 중인 프로젝트이며, Web Security Lab은 준비 중인 항목입니다. 실제 프로젝트에 맞게 제목·설명·기술·저장소 주소를 수정하세요. `/projects/`와 각 프로젝트 상세 페이지가 함께 생성됩니다.
 

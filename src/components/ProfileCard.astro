@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import ProfileImage from './ProfileImage.astro';
 import { PROFILE } from '../site';
 const initial = [...PROFILE.name.trim()][0]?.toUpperCase() ?? 'E';
+const details = PROFILE.details ?? [];
 ---
 <aside class="profile-card" aria-labelledby="profile-name">
   <div class="profile-content">
@@ -12,6 +13,7 @@ const initial = [...PROFILE.name.trim()][0]?.toUpperCase() ?? 'E';
     </div>
     <div class="profile-identity"><div class="profile-names"><h2 id="profile-name">{PROFILE.name}</h2>{PROFILE.realName && <span class="profile-real-name">{PROFILE.realName}</span>}</div>{PROFILE.handle && <p class="profile-handle">{PROFILE.handle}</p>}</div>
     {PROFILE.bio && <p class="profile-bio">{PROFILE.bio}</p>}
+    {details.length > 0 && <dl class="profile-details">{details.map(({ label, value }) => <><dt>{label}</dt><dd>{value}</dd></>)}</dl>}
     {PROFILE.links.length > 0 && <nav class="profile-links" aria-label="프로필 링크">{PROFILE.links.map(({ label, href, icon }) => {
       const external = /^https?:\/\//.test(href);
       return <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}><Icon name={icon} size={18} /><span>{label}</span>{external && <Icon name="external" size={12} />}</a>;
@@ -30,6 +32,9 @@ const initial = [...PROFILE.name.trim()][0]?.toUpperCase() ?? 'E';
   .profile-real-name { color: var(--muted); font-size: 12px; font-weight: 400; letter-spacing: .02em; }
   .profile-handle { margin-top: 2px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
   .profile-bio { margin-top: 18px; color: var(--text); font-size: 13px; line-height: 1.9; white-space: pre-line; }
+  .profile-details { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; gap: 10px; margin: 20px 0 0; line-height: 1.85; }
+  .profile-details dt { color: var(--muted); font-size: 11px; font-weight: 400; }
+  .profile-details dd { margin: 0; color: var(--text); font-size: 12px; font-weight: 500; white-space: pre-line; overflow-wrap: anywhere; }
   .profile-links { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; padding-top: 24px; border-top: 1px solid var(--line-strong); }
   .profile-links a { display: inline-flex; align-items: center; gap: 12px; min-height: 28px; font-size: 13px; color: var(--muted); width: fit-content; }
   .profile-links a:hover { color: var(--accent); }
@@ -43,6 +48,7 @@ const initial = [...PROFILE.name.trim()][0]?.toUpperCase() ?? 'E';
     .profile-initial { font-size: 27px; }
     .profile-identity h2 { font-size: 23px; }
     .profile-bio { grid-column: 1 / -1; margin: 0; }
+    .profile-details { grid-column: 1 / -1; margin: 5px 0 0; }
     .profile-links { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; gap: 12px 24px; margin: 0; padding-top: 6px; border: 0; }
     .profile-links a { font-size: 12px; gap: 8px; }
   }

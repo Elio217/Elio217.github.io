@@ -10,7 +10,7 @@ const { compact = false } = Astro.props;
     <div class="footer-right">
       <div class="footer-links">
         <a href={SITE.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={17} />GitHub<Icon name="external" size={13} /></a>
-        <a href="/rss.xml"><Icon name="rss" size={16} />RSS</a>
+        {!compact && <a href="/rss.xml"><Icon name="rss" size={16} />RSS</a>}
       </div>
       {!compact && <p>© {new Date().getFullYear()} Elio · Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a></p>}
     </div>

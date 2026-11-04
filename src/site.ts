@@ -15,6 +15,7 @@ interface Profile {
   realName: string;
   handle: string;
   bio: string;
+  details?: { label: string; value: string }[];
   avatar: string | ImageMetadata;
   links: { label: string; href: string; icon: 'github' | 'arrow' | 'external' | 'rss' | 'mail' | 'user' | 'file' }[];
 }
@@ -26,13 +27,24 @@ export const PROFILE: Profile = {
   name: SITE.name,
   realName: '김도현',
   handle: '@Elio217',
-  bio: '개발과 보안을 공부하며\n배운 것을 기록합니다.',
+  bio: '',
+  details: [
+    { label: '소속', value: 'KUS_AICS' },
+    { label: '동아리', value: 'KUality · korec' },
+    { label: '외부활동', value: '화이트햇스쿨 4기' },
+  ],
   avatar: profileMarten,
   links: [
     { label: 'GitHub', href: SITE.github, icon: 'github' },
-    { label: 'RSS', href: '/rss.xml', icon: 'rss' },
     { label: '소개', href: '/about/', icon: 'user' },
   ],
 };
 
-export const POST_CATEGORIES = ['개발', '웹 보안', '문제 해결', '회고'] as const;
+export const POST_CATEGORIES = [
+  '개발',
+  'CTF/Wargame',
+  'BugbBounty',
+  '블로그/기술문서',
+  '논문/컨퍼런스',
+  '공모전/자격증',
+] as const;

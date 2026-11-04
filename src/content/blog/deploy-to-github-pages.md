@@ -3,6 +3,7 @@ title: 'GitHub Pages로 블로그 배포하기'
 description: '저장소와 블로그를 연결하는 마지막 단계. GitHub Actions를 통해 새 기록이 자동으로 발행되는 흐름을 정리합니다.'
 pubDate: '2026-11-03T07:00:00+09:00'
 tags: ['Astro', 'GitHub Pages', '블로그']
+category: '블로그/기술문서'
 draft: false
 ---
 
