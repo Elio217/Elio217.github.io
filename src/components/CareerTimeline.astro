@@ -2,17 +2,46 @@
 import { CAREER } from '../data/portfolio';
 ---
 <ol class="career-timeline">
-  {CAREER.map(({ category, organization, detail, period, description }) => <li><span class="career-marker" aria-hidden="true"></span><div class="career-label"><span>{category}</span>{period && <p>{period}</p>}</div><div class="career-content"><h3>{organization}</h3><p class="career-detail">{detail}</p>{description && <p class="career-description">{description}</p>}</div></li>)}
+  {CAREER.map(({ category, organization, detail, period, description, activities }) => (
+    <li class="career-entry">
+      <span class="career-marker" aria-hidden="true"></span>
+      <div class="career-label"><span>{category}</span></div>
+      <div class="career-content">
+        <div class="career-heading">
+          <h3>{organization}</h3>
+          {period && <p class="career-period"><span aria-hidden="true">·</span> {period}</p>}
+        </div>
+        <p class="career-detail">{detail}</p>
+        {activities && activities.length > 0 && (
+          <ul class="career-activities" aria-label="동아리 활동">
+            {activities.map((activity) => (
+              <li>
+                <span class="activity-name">{activity.name}</span>
+                {activity.period && <span class="activity-period"> · {activity.period}</span>}
+              </li>
+            ))}
+          </ul>
+        )}
+        {description && <p class="career-description">{description}</p>}
+      </div>
+    </li>
+  ))}
 </ol>
 <style>
   .career-timeline { list-style: none; padding: 0 0 0 26px; margin: 32px 0 0 5px; border-left: 1px solid var(--line-strong); }
-  li { position: relative; display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 30px; padding-bottom: 42px; }
-  li:last-child { padding-bottom: 0; }
+  .career-entry { position: relative; display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 30px; padding-bottom: 42px; }
+  .career-entry:last-child { padding-bottom: 0; }
   .career-marker { position: absolute; left: -32px; top: 10px; width: 11px; height: 11px; background: var(--accent); border-radius: 50%; border: 2px solid var(--bg); box-shadow: 0 0 15px #ac86e644; }
   .career-label > span { display: inline-flex; padding: 3px 13px; border: 1px solid var(--line-strong); border-radius: 20px; color: var(--accent); background: var(--accent-bg); font-size: 11px; }
-  .career-label > p { font-size: 11px; color: var(--subtle); margin-top: 10px; }
+  .career-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+  .career-period { color: var(--muted); font-size: 13px; }
   h3 { font-size: 21px; font-weight: 600; letter-spacing: -.6px; }
   .career-detail { font-size: 14px; color: var(--muted); margin-top: 7px; }
+  .career-activities { display: grid; gap: 10px; margin: 18px 0 0; padding-left: 19px; list-style: disc; font-size: 14px; }
+  .career-activities li { padding-left: 2px; }
+  .career-activities li::marker { color: var(--muted); }
+  .activity-name { color: var(--text); font-weight: 500; }
+  .activity-period { color: var(--muted); font-size: 13px; }
   .career-description { font-size: 13px; color: var(--muted); line-height: 1.9; margin-top: 14px; }
-  @media (max-width: 600px) { li { grid-template-columns: 1fr; gap: 15px; padding-bottom: 34px; } h3 { font-size: 19px; } .career-label > p { display: inline; margin-left: 10px; } }
+  @media (max-width: 600px) { .career-entry { grid-template-columns: 1fr; gap: 15px; padding-bottom: 34px; } h3 { font-size: 19px; } }
 </style>

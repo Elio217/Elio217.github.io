@@ -41,11 +41,21 @@ export interface CareerEntry {
   detail: string;
   period?: string;
   description?: string;
+  activities?: { name: string; period?: string }[];
 }
 
 // 기간과 활동 설명은 확인된 내용이 있을 때 선택적으로 추가하세요.
 export const CAREER: CareerEntry[] = [
-  { category: '소속', organization: 'KUality', detail: 'Korec' },
+  {
+    category: '소속',
+    organization: '고려대학교(세종)',
+    detail: '인공지능사이버보안학과',
+    period: '2026.03 ~ 현재',
+    activities: [
+      { name: 'KUality', period: '2026.11 ~ 현재' },
+      { name: 'Korec', period: '2026.03 ~ 현재' },
+    ],
+  },
   { category: '외부활동', organization: '화이트햇스쿨', detail: '4기' },
 ];
 
