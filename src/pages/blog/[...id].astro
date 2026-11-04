@@ -2,7 +2,9 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import ProfileImage from '../../components/ProfileImage.astro';
 import { formatDate, getPosts, postUrl, readingTime, tagUrl } from '../../lib/posts';
+import { PROFILE } from '../../site';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -19,7 +21,22 @@ const toc = headings.filter(({ depth }) => depth === 2 || depth === 3);
 <BaseLayout title={post.data.title} description={post.data.description} article published={post.data.pubDate} updated={post.data.updatedDate}>
   <div class="container article-container">
     <a class="back-link" href="/blog/"><Icon name="back" size={17} />모든 기록으로</a>
-    <header class="article-heading"><div class="post-tags">{post.data.tags.map((tag) => <a class="tag" href={tagUrl(tag)}>{tag}</a>)}</div><h1>{post.data.title}</h1><p class="article-description">{post.data.description}</p><div class="article-byline"><span class="author-avatar" aria-hidden="true">e.</span><a href="/about/">Elio</a><span class="meta-dot">·</span><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time><span class="meta-dot">·</span><span class="reading-time"><Icon name="clock" size={14} />{readingTime(post)}분 읽기</span></div>{post.data.updatedDate && <p class="updated-date">마지막 수정 <time datetime={post.data.updatedDate.toISOString()}>{formatDate(post.data.updatedDate)}</time></p>}</header>
+    <header class="article-heading">
+      <div class="post-tags">{post.data.tags.map((tag) => <a class="tag" href={tagUrl(tag)}>{tag}</a>)}</div>
+      <h1>{post.data.title}</h1>
+      <p class="article-description">{post.data.description}</p>
+      <div class="article-byline">
+        <span class="author-avatar" aria-hidden="true">
+          {PROFILE.avatar ? <ProfileImage size={29} /> : [...PROFILE.name.trim()][0]?.toUpperCase()}
+        </span>
+        <a href="/about/">{PROFILE.name}</a>
+        <span class="meta-dot">·</span>
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+        <span class="meta-dot">·</span>
+        <span class="reading-time"><Icon name="clock" size={14} />{readingTime(post)}분 읽기</span>
+      </div>
+      {post.data.updatedDate && <p class="updated-date">마지막 수정 <time datetime={post.data.updatedDate.toISOString()}>{formatDate(post.data.updatedDate)}</time></p>}
+    </header>
     <div class:list={['article-layout', { 'has-toc': toc.length > 0 }]}>
       <div><article class="prose article-body"><Content /></article><div class="article-end"><span aria-hidden="true">✦</span><p>읽어주셔서 감사합니다.<br /><span>다음 발견에서 또 만나요.</span></p></div></div>
       {toc.length > 0 && <aside class="toc"><nav aria-label="이 글의 목차"><p class="eyebrow">ON THIS PAGE</p><h2>이 글의 별자리</h2><ul>{toc.map((heading) => <li class:list={{ 'toc-nested': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul><a class="toc-top" href="#main">맨 위로 ↑</a></nav></aside>}
