@@ -57,7 +57,6 @@ content:
         label: 태그
         type: string
         list: true
-        default: []
         description: 글의 주제나 사용한 기술을 하나씩 추가하세요.
       - name: draft
         label: 초안으로 저장
