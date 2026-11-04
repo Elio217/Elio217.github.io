@@ -6,5 +6,6 @@ pubDate: 2026-11-05
 category: 블로그/기술문서
 tags:
   - KUality
+  - WEB3
 draft: true
 ---
