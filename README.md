@@ -60,7 +60,7 @@ draft: false
 - `draft: true`인 글은 개발·배포 모두에서 제외됩니다.
 - `##`, `###` 제목은 글 목차에 자동으로 표시됩니다.
 - 이미지는 `public/images/`에 넣고 `/images/파일명`으로 참조할 수 있습니다.
-- 현재 포함된 세 편은 시작을 돕는 **예제 글**입니다. 자유롭게 수정하거나 삭제하세요.
+- 현재는 블로그 제작 과정을 정리한 `building-my-astro-blog.md` 한 편을 게시했습니다. 새 글은 이 폴더에 추가하세요.
 
 ## GitHub Pages에 배포하기
 
@@ -81,7 +81,9 @@ draft: false
 | --- | --- |
 | `src/site.ts` | 블로그 기본 정보와 홈 화면의 `PROFILE` 설정(이름, 사진, 소개, 링크) |
 | `astro.config.mjs` | 사이트 주소와 Astro 설정 |
-| `src/pages/index.astro` | 메인 문구와 섹션 |
+| `src/pages/index.astro` | 홈 화면 섹션 |
+| `src/components/HomePoem.astro` | 홈 상단의 별 장식과 시 구절 |
+| `src/styles/home.css` | 홈 화면의 하늘 여백, 간격과 배치 |
 | `src/pages/about.astro` | 소개 글 |
 | `src/data/portfolio.ts` | `PROJECTS`의 프로젝트 정보와 `CAREER`의 소속·외부활동 |
 | `src/assets/milky-way.png` | AI로 새로 생성한 메인 은하수 이미지 |
@@ -93,7 +95,9 @@ draft: false
 | `src/content/blog/` | Markdown 글 |
 | `.github/workflows/deploy.yml` | 빌드·배포 자동화 |
 
-홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. `realName`에 이름을 넣으면 `Elio` 옆에 작은 글씨로 표시하며, 빈 문자열이면 생략합니다. 현재 `src/assets/profile-marten.png`의 담비 캐릭터를 사용하며, Astro가 작은 WebP 이미지로 최적화해 홈과 소개에 표시합니다. 사진을 바꾸려면 `src/assets/`의 파일을 import해 `avatar`에 지정하거나, `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 소개 문구 위에 표시됩니다.
+홈 화면의 왼쪽 프로필은 `src/site.ts`의 `PROFILE`에서 수정합니다. `realName`에 이름을 넣으면 `Elio` 옆에 작은 글씨로 표시하며, 빈 문자열이면 생략합니다. 현재 `src/assets/profile-marten.png`의 담비 캐릭터를 사용하며, Astro가 작은 WebP 이미지로 최적화해 홈과 소개에 표시합니다. 사진을 바꾸려면 `src/assets/`의 파일을 import해 `avatar`에 지정하거나, `public/images/profile.jpg`처럼 파일을 추가하고 `avatar: '/images/profile.jpg'`로 지정하세요. `avatar`가 빈 문자열이면 이름의 첫 글자를 기본 아바타로 표시합니다. `bio`에는 `\n`으로 줄바꿈을 넣을 수 있으며, `links`에서 링크 이름·주소·아이콘을 바꿀 수 있습니다. 모바일에서는 프로필이 시 구절 위에 표시됩니다.
+
+홈 상단은 `서시.png` 시안의 배치를 반영했습니다. `HomePoem.astro`에서 작은 별·짧은 선과 두 구절을 렌더링하며, 작품명과 작가명은 표시하지 않습니다. 기존 소개 제목과 설명, 노트 그림은 제거했습니다. 하늘의 여백과 아래쪽 배치는 `home.css`의 `.home-intro`에서 조절합니다.
 
 소속·동아리·외부활동은 `PROFILE.details`에서 수정합니다. `label`은 항목명, `value`는 내용이며, 화면에서 두 열로 자동 정렬합니다. `value`에 `\n`을 넣으면 같은 내용 열 안에서 줄바꿈됩니다. `bio`는 자유로운 소개 문구가 필요할 때 함께 사용할 수 있고, 빈 문자열이면 표시하지 않습니다.
 
@@ -107,9 +111,9 @@ details: [
 
 상단 홈 링크는 `src/components/SignatureLogo.astro`의 SVG 필기체 로고입니다. 글씨를 쓰고 잠시 보여준 뒤 다시 쓰는 7초 주기를 반복합니다. 운영체제에서 움직임 줄이기를 선택하면 완성된 서명을 정적으로 표시합니다.
 
-브라우저 탭 아이콘은 `public/favicon.svg`를 원본으로 만든 검은 원 안 흰색 담비 실루엣입니다. 페이지는 새 파일명인 `favicon-marten-silhouette.svg` 및 16px·32px PNG를 참조하며, 브라우저 기본 경로용 `favicon.ico`도 제공합니다. 아이콘을 수정하면 이 파일들을 함께 갱신하세요. 프로필의 작은 이름은 현재 `김도현`으로 설정되어 있습니다. 홈의 프로필과 하단에서는 RSS 링크를 표시하지 않습니다.
+브라우저 탭 아이콘은 `public/favicon.svg`를 원본으로 만든 검은 원 안 흰색 담비 얼굴입니다. 페이지는 새 파일명인 `favicon-marten-face.svg` 및 16px·32px PNG를 참조하며, 브라우저 기본 경로용 `favicon.ico`도 제공합니다. 아이콘을 수정하면 이 파일들을 함께 갱신하세요. 프로필의 작은 이름은 현재 `김도현`으로 설정되어 있습니다. 홈의 프로필과 하단에서는 RSS 링크를 표시하지 않습니다.
 
-프로젝트 카드와 상세 내용은 `src/data/portfolio.ts`의 `PROJECTS`에서 관리합니다. 현재 블로그는 운영 중인 프로젝트이며, Web Security Lab은 준비 중인 항목입니다. 실제 프로젝트에 맞게 제목·설명·기술·저장소 주소를 수정하세요. `/projects/`와 각 프로젝트 상세 페이지가 함께 생성됩니다.
+프로젝트 카드와 상세 내용은 `src/data/portfolio.ts`의 `PROJECTS`에서 관리합니다. 현재는 화이트햇스쿨 4기의 ‘시나리오로 재현하며 배우는 침해사고대응’과 ‘DevSecOps 파이프라인 제작’을 표시합니다. 제목·설명·태그·상세 내용을 수정하면 `/projects/`와 각 프로젝트 상세 페이지에 함께 적용됩니다. `organization`(활동·소속), `status`(상태), `repository`(저장소 주소)는 선택 항목입니다. 기간·진행 상태·사용 도구와 구체적인 성과는 실제 정보가 있을 때 추가하세요.
 
 소개 탭은 `CAREER`의 소속과 외부활동을 표시합니다. 초기 내용은 고려대학교(세종) 인공지능사이버보안학과와 화이트햇스쿨 4기입니다. `period`(기간)와 `description`(설명)은 선택이며, 입력한 경우에만 표시됩니다. 이메일이나 이력서 링크를 추가하려면 `PROFILE.links`에 실제 주소를 등록하세요. 아이콘은 `mail`, `file` 등을 사용할 수 있습니다.
 

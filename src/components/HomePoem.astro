@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+---
+<figure class="home-poem" aria-label="시 구절">
+  <div class="poem-marker" aria-hidden="true">
+    <Icon name="star" size={20} />
+    <span class="poem-rule" aria-hidden="true"></span>
+  </div>
+  <blockquote>
+    <p><span>죽는 날까지 하늘을 우러러</span><span>한 점 부끄럼이 없기를</span></p>
+  </blockquote>
+</figure>
+<style>
+  .home-poem { margin: 0; }
+  .poem-marker { display: flex; align-items: center; gap: 10px; color: var(--accent); }
+  .poem-rule { width: 34px; height: 1px; background: currentColor; opacity: .7; }
+  blockquote { margin: 16px 0 0; }
+  p { color: var(--text); font-size: clamp(20px, 1.8vw, 26px); font-weight: 400; line-height: 1.8; letter-spacing: -.025em; }
+  p span { display: block; }
+  p span:first-child { opacity: .82; }
+  p span:last-child { font-weight: 450; }
+  @media (max-width: 720px) {
+    .poem-marker { gap: 8px; }
+    .poem-rule { width: 28px; }
+    blockquote { margin-top: 14px; }
+    p { font-size: clamp(17px, 5vw, 21px); }
+  }
+</style>

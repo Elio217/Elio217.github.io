@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProfileCard from '../components/ProfileCard.astro';
-import PortfolioArt from '../components/PortfolioArt.astro';
+import HomePoem from '../components/HomePoem.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import HomePostList from '../components/HomePostList.astro';
 import Icon from '../components/Icon.astro';
@@ -15,8 +15,8 @@ const posts = await getPosts();
     <ProfileCard />
     <div class="home-main">
       <section class="home-intro" aria-labelledby="home-title">
-        <div><p class="home-eyebrow">SECURITY · DEVELOPMENT · FIELD NOTES</p><h1 id="home-title">배운 것을 기록하고,<br />만든 것을 <span>나눕니다.</span></h1><p class="home-intro-description">개발과 웹 보안에 관한 프로젝트, 실험, 문제 해결의 기록.</p></div>
-        <div class="home-journal"><PortfolioArt kind="journal" /></div>
+        <h1 id="home-title" class="sr-only">Elio의 개발과 보안 기록</h1>
+        <HomePoem />
       </section>
       <section class="home-projects" aria-labelledby="featured-title">
         <div class="home-section-heading"><h2 id="featured-title"><Icon name="star" size={22} />대표 프로젝트</h2><a href="/projects/" class="text-link">전체 프로젝트 <Icon name="arrow" size={17} /></a></div>

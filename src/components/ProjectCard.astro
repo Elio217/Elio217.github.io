@@ -8,6 +8,7 @@ const { project } = Astro.props;
 <article class="project-card">
   <div class="project-art"><PortfolioArt kind={project.artwork} /></div>
   <div class="project-copy">
+    {project.organization && <p class="project-organization">{project.organization}</p>}
     <div class="project-name"><h3><a href={projectUrl(project)}>{project.title}</a></h3>{project.status === '준비 중' && <span class="project-status">준비 중</span>}</div>
     <p>{project.description}</p>
     <ul class="project-tags" aria-label="프로젝트 기술">{project.tags.map((tag) => <li>{tag}</li>)}</ul>
@@ -23,6 +24,7 @@ const { project } = Astro.props;
   h3 a:hover { color: var(--accent); }
   .project-status { font-size: 9px; border: 1px solid var(--line-strong); border-radius: 4px; padding: 1px 5px; color: var(--muted); }
   .project-copy > p { margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+  .project-copy > .project-organization { margin: 0 0 6px; color: var(--accent); font-size: 10px; letter-spacing: .02em; }
   .project-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 12px 0 14px; }
   .project-tags li { padding: 2px 10px; border-radius: 20px; color: var(--text); background: var(--accent-bg); border: 1px solid var(--line); font-size: 10px; }
   .project-detail { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 11px; }

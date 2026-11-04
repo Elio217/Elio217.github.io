@@ -1,35 +1,36 @@
-import { SITE } from '../site';
-
 export interface Project {
   id: string;
   title: string;
   description: string;
   tags: string[];
-  artwork: 'browser' | 'security';
-  status: '운영 중' | '준비 중';
+  artwork: 'browser' | 'security' | 'pipeline';
+  organization?: string;
+  status?: '운영 중' | '준비 중';
   repository?: string;
   notes: { title: string; text: string }[];
 }
 
-// 실제 프로젝트를 추가하거나 아래 준비 중인 항목을 수정하세요.
+// 기간, 사용 도구, 저장소와 진행 상태는 실제 정보가 있을 때 추가하세요.
 export const PROJECTS: Project[] = [
   {
-    id: 'elio-blog', title: 'Elio Blog',
-    description: '학습과 프로젝트를 연결하는 개인 기록 공간',
-    tags: ['Astro', 'TypeScript', 'Markdown'], artwork: 'browser', status: '운영 중', repository: SITE.repository,
+    id: 'whitehat-incident-response',
+    title: '시나리오로 재현하며 배우는 침해사고대응',
+    organization: '화이트햇스쿨 4기',
+    description: '시나리오 재현을 통해 침해사고 대응 과정을 학습하는 프로젝트',
+    tags: ['침해사고대응', '시나리오 재현'], artwork: 'security',
     notes: [
-      { title: '프로젝트 소개', text: '개발하며 배운 내용과 프로젝트의 과정을 정리하는 개인 블로그입니다. Astro로 정적 페이지를 만들고 GitHub Pages로 배포합니다.' },
-      { title: '담고 있는 기능', text: 'Markdown 글 작성, 태그와 카테고리 탐색, 검색, RSS를 지원합니다. 밤에는 은하수, 낮에는 맑아지는 하늘을 보여주는 테마를 적용했습니다.' },
-      { title: '계속 만들어가는 공간', text: '직접 만들고 개선한 과정을 코드와 글로 함께 남깁니다. 새로운 학습과 프로젝트에 맞춰 조금씩 확장합니다.' },
+      { title: '프로젝트 소개', text: '화이트햇스쿨 4기의 「시나리오로 재현하며 배우는 침해사고대응」 프로젝트입니다. 시나리오를 재현하며 침해사고 대응을 학습하는 과정을 다룹니다.' },
+      { title: '프로젝트 주제', text: '시나리오 재현과 사고 대응을 연결해 이해하는 데 초점을 둡니다. 재현한 상황과 관찰한 내용을 바탕으로 대응 과정을 정리하는 것이 목표입니다.' },
     ],
   },
   {
-    id: 'web-security-lab', title: 'Web Security Lab',
-    description: '웹 보안 실험과 학습 과정을 정리할 실습 노트',
-    tags: ['Web', 'Security'], artwork: 'security', status: '준비 중',
+    id: 'devsecops-pipeline',
+    title: 'DevSecOps 파이프라인 제작',
+    description: '개발과 배포 흐름에 보안 점검을 연결하는 파이프라인 구축 프로젝트',
+    tags: ['DevSecOps', 'CI/CD', '보안 자동화'], artwork: 'pipeline',
     notes: [
-      { title: '준비 중인 프로젝트', text: '웹 보안을 공부하며 정리할 실습 기록을 위한 공간입니다. 구체적인 실습 내용과 결과는 프로젝트를 진행하면서 추가할 예정입니다.' },
-      { title: '정리하고 싶은 내용', text: '웹의 동작 원리, 인증과 인가, 입력과 출력 처리 등을 직접 이해하고 실습 과정과 배운 점을 기록하려 합니다.' },
+      { title: '프로젝트 소개', text: '개발과 배포 흐름에 보안 점검을 연결하는 DevSecOps 파이프라인 제작 프로젝트입니다.' },
+      { title: '프로젝트 주제', text: '파이프라인의 단계와 각 단계의 보안 점검을 함께 설계하는 데 초점을 둡니다. 개발 과정에서 반복해서 실행할 수 있는 보안 점검 흐름을 구성하는 것이 목표입니다.' },
     ],
   },
 ];
