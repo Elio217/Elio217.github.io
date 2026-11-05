@@ -263,6 +263,8 @@ main:focus { outline: none; }
 html[data-theme='dark'] .astro-code, html[data-theme='dark'] .astro-code span { color: var(--shiki-dark) !important; background-color: var(--shiki-dark-bg) !important; font-style: var(--shiki-dark-font-style) !important; font-weight: var(--shiki-dark-font-weight) !important; text-decoration: var(--shiki-dark-text-decoration) !important; }
 .prose blockquote { border-left: 2px solid var(--accent); margin: 25px 0; padding: 1px 22px; background: var(--accent-bg); color: var(--text); border-radius: 0 5px 5px 0; }
 .prose hr { border: 0; border-top: 1px solid var(--line-strong); margin-block: 35px; }
+.article-body h2 { margin: 56px 0 8px; }
+.article-body h2 + hr { margin-top: 0; margin-bottom: 28px; }
 .prose table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; margin-block: 25px; font-size: 13px; }
 .prose th, .prose td { border: 1px solid var(--line-strong); padding: 10px 15px; text-align: left; }
 .prose th { background: var(--surface); color: var(--text); font-weight: 500; }
