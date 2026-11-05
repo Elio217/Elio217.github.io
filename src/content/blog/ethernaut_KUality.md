@@ -10,7 +10,6 @@ tags:
 draft: false
 ---
 ## 들어가기에 앞서...
-
 ---
 
 이 글은 KUality 미션 [Ethernaut 문제 올클리어]를 수행한 것을 정리한 글이다.
@@ -19,7 +18,6 @@ draft: false
 
 ##   
 # 0. 환경 구축 
-
 ---
 
 
