@@ -34,9 +34,12 @@ const formatCtfDate = (date: string) => date.replaceAll('-', '.');
       <div class="career-label"><h3 id="ctf-title" class="career-category">CTF</h3></div>
       <div class="career-content">
         <ul class="ctf-results" aria-labelledby="ctf-title">
-          {CTF_RESULTS.map(({ name, placement, startDate, endDate }) => (
+          {CTF_RESULTS.map(({ name, placement, team, startDate, endDate }) => (
             <li class="ctf-result">
-              <p class="ctf-result-title">{name} - <span>{placement}</span></p>
+              <div class="ctf-result-copy">
+                <p class="ctf-result-title">{name} - <span>{placement}</span></p>
+                {team && <p class="ctf-team">{team}</p>}
+              </div>
               <p class="ctf-period">
                 <time datetime={startDate}>{formatCtfDate(startDate)}</time>
                 {endDate && <> ~ <time datetime={endDate}>{formatCtfDate(endDate)}</time></>}
@@ -68,8 +71,10 @@ const formatCtfDate = (date: string) => date.replaceAll('-', '.');
   .ctf-result { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 18px; padding: 16px 0; border-bottom: 1px solid var(--line); }
   .ctf-result:first-child { padding-top: 0; }
   .ctf-result:last-child { padding-bottom: 0; border-bottom: 0; }
+  .ctf-result-copy { min-width: 0; }
   .ctf-result-title { min-width: 0; font-size: 15px; font-weight: 500; line-height: 1.8; }
   .ctf-result-title span { color: var(--accent); white-space: nowrap; }
+  .ctf-team { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.7; }
   .ctf-period { color: var(--muted); font-size: 12px; white-space: nowrap; }
   @media (max-width: 900px) { .ctf-result { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 600px) { .career-entry { grid-template-columns: 1fr; gap: 15px; padding-bottom: 34px; } h3 { font-size: 19px; } }

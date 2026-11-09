@@ -62,6 +62,7 @@ export const CAREER: CareerEntry[] = [
 export interface CtfResult {
   name: string;
   placement: string;
+  team?: string;
   startDate: string;
   endDate?: string;
 }
@@ -70,11 +71,13 @@ export const CTF_RESULTS: CtfResult[] = [
   {
     name: 'MSG CTF 2026',
     placement: '2nd place',
+    team: 'DoubleDouble',
     startDate: '2026-11-08',
   },
   {
     name: 'WhiteHat School 4th CTF',
     placement: '1st place',
+    team: 'DCS',
     startDate: '2026-11-04',
     endDate: '2026-11-06',
   },
