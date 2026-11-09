@@ -56,7 +56,7 @@ export const CAREER: CareerEntry[] = [
       { name: 'Korec', period: '2026.03 ~ 현재' },
     ],
   },
-  { category: '외부활동', organization: '화이트햇스쿨', detail: '4기' },
+  { category: '외부활동', organization: '화이트햇스쿨', detail: '4기', period: '2026.06 ~ 현재' },
 ];
 
 export interface CtfResult {
@@ -68,15 +68,15 @@ export interface CtfResult {
 
 export const CTF_RESULTS: CtfResult[] = [
   {
+    name: 'MSG CTF 2026',
+    placement: '2nd place',
+    startDate: '2026-11-08',
+  },
+  {
     name: 'WhiteHat School 4th CTF',
     placement: '1st place',
     startDate: '2026-11-04',
     endDate: '2026-11-06',
-  },
-  {
-    name: 'MSG CTF 2026',
-    placement: '2nd place',
-    startDate: '2026-11-08',
   },
 ];
 
