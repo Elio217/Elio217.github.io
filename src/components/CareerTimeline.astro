@@ -1,5 +1,7 @@
 ---
-import { CAREER } from '../data/portfolio';
+import { CAREER, CTF_RESULTS } from '../data/portfolio';
+
+const formatCtfDate = (date: string) => date.replaceAll('-', '.');
 ---
 <ol class="career-timeline">
   {CAREER.map(({ category, organization, detail, period, description, activities }) => (
@@ -26,13 +28,32 @@ import { CAREER } from '../data/portfolio';
       </div>
     </li>
   ))}
+  {CTF_RESULTS.length > 0 && (
+    <li class="career-entry career-entry-ctf">
+      <span class="career-marker" aria-hidden="true"></span>
+      <div class="career-label"><h3 id="ctf-title" class="career-category">CTF</h3></div>
+      <div class="career-content">
+        <ul class="ctf-results" aria-labelledby="ctf-title">
+          {CTF_RESULTS.map(({ name, placement, startDate, endDate }) => (
+            <li class="ctf-result">
+              <p class="ctf-result-title">{name} - <span>{placement}</span></p>
+              <p class="ctf-period">
+                <time datetime={startDate}>{formatCtfDate(startDate)}</time>
+                {endDate && <> ~ <time datetime={endDate}>{formatCtfDate(endDate)}</time></>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  )}
 </ol>
 <style>
   .career-timeline { list-style: none; padding: 0 0 0 26px; margin: 32px 0 0 5px; border-left: 1px solid var(--line-strong); }
   .career-entry { position: relative; display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 30px; padding-bottom: 42px; }
   .career-entry:last-child { padding-bottom: 0; }
   .career-marker { position: absolute; left: -32px; top: 10px; width: 11px; height: 11px; background: var(--accent); border-radius: 50%; border: 2px solid var(--bg); box-shadow: 0 0 15px #ac86e644; }
-  .career-label > span { display: inline-flex; padding: 3px 13px; border: 1px solid var(--line-strong); border-radius: 20px; color: var(--accent); background: var(--accent-bg); font-size: 11px; }
+  .career-label > span, .career-label > .career-category { display: inline-flex; padding: 3px 13px; border: 1px solid var(--line-strong); border-radius: 20px; color: var(--accent); background: var(--accent-bg); font-size: 11px; font-weight: 400; line-height: 1.7; letter-spacing: normal; }
   .career-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
   .career-period { color: var(--muted); font-size: 13px; }
   h3 { font-size: 21px; font-weight: 600; letter-spacing: -.6px; }
@@ -43,5 +64,13 @@ import { CAREER } from '../data/portfolio';
   .activity-name { color: var(--text); font-weight: 500; }
   .activity-period { color: var(--muted); font-size: 13px; }
   .career-description { font-size: 13px; color: var(--muted); line-height: 1.9; margin-top: 14px; }
+  .ctf-results { list-style: none; margin: 0; padding: 0; }
+  .ctf-result { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 18px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .ctf-result:first-child { padding-top: 0; }
+  .ctf-result:last-child { padding-bottom: 0; border-bottom: 0; }
+  .ctf-result-title { min-width: 0; font-size: 15px; font-weight: 500; line-height: 1.8; }
+  .ctf-result-title span { color: var(--accent); white-space: nowrap; }
+  .ctf-period { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  @media (max-width: 900px) { .ctf-result { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 600px) { .career-entry { grid-template-columns: 1fr; gap: 15px; padding-bottom: 34px; } h3 { font-size: 19px; } }
 </style>
