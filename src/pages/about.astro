@@ -3,7 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CareerTimeline from '../components/CareerTimeline.astro';
 import Icon from '../components/Icon.astro';
 import ProfileImage from '../components/ProfileImage.astro';
+import { CTF_RESULTS } from '../data/portfolio';
 import { PROFILE, SITE } from '../site';
+
+const formatCtfDate = (date: string) => date.replaceAll('-', '.');
 ---
 <BaseLayout title="소개" description="Elio의 소개, 소속과 외부활동을 정리한 이력입니다." sky>
   <div class="container page-content career-page">
@@ -29,6 +32,20 @@ import { PROFILE, SITE } from '../site';
         </div>
       </div>
       <CareerTimeline />
+      <section class="ctf-section" aria-labelledby="ctf-title">
+        <h3 id="ctf-title">CTF</h3>
+        <ul class="ctf-results">
+          {CTF_RESULTS.map(({ name, placement, startDate, endDate }) => (
+            <li class="ctf-result">
+              <p class="ctf-result-title">{name} - <span>{placement}</span></p>
+              <p class="ctf-period">
+                <time datetime={startDate}>{formatCtfDate(startDate)}</time>
+                {endDate && <> ~ <time datetime={endDate}>{formatCtfDate(endDate)}</time></>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
     </section>
   </div>
 </BaseLayout>
@@ -44,5 +61,15 @@ import { PROFILE, SITE } from '../site';
   .career-section-heading { display: flex; align-items: center; gap: 13px; }
   .career-section-heading > svg { color: var(--accent); }
   .career-section h2 { font-size: 23px; font-weight: 600; margin-top: 5px; letter-spacing: -.7px; }
+  .ctf-section { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line-strong); }
+  .ctf-section h3 { font-size: 18px; font-weight: 600; letter-spacing: .04em; }
+  .ctf-results { list-style: none; margin: 18px 0 0; padding: 0; }
+  .ctf-result { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .ctf-result:first-child { padding-top: 0; }
+  .ctf-result:last-child { padding-bottom: 0; border-bottom: 0; }
+  .ctf-result-title { min-width: 0; font-size: 14px; font-weight: 500; line-height: 1.8; }
+  .ctf-result-title span { color: var(--accent); white-space: nowrap; }
+  .ctf-period { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  @media (max-width: 720px) { .ctf-result { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 600px) { .career-intro { flex-direction: column; align-items: flex-start; padding: 24px; } .career-intro h1 { font-size: 20px; } .career-section { padding: 25px 22px; } }
 </style>

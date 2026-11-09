@@ -59,4 +59,25 @@ export const CAREER: CareerEntry[] = [
   { category: '외부활동', organization: '화이트햇스쿨', detail: '4기' },
 ];
 
+export interface CtfResult {
+  name: string;
+  placement: string;
+  startDate: string;
+  endDate?: string;
+}
+
+export const CTF_RESULTS: CtfResult[] = [
+  {
+    name: 'WhiteHat School 4th CTF',
+    placement: '1st place',
+    startDate: '2026-11-04',
+    endDate: '2026-11-06',
+  },
+  {
+    name: 'MSG CTF 2026',
+    placement: '2nd place',
+    startDate: '2026-11-08',
+  },
+];
+
 export const projectUrl = (project: Project) => `/projects/${project.id}/`;
